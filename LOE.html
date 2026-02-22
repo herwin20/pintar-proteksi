@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
     <title>Pembelajaran LOE: Analogi & Animasi Mulus</title>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -19,48 +22,85 @@
       body {
         background: #e9f0f7;
         margin: 0;
-        padding: 24px;
+        padding: 12px;
         display: flex;
         justify-content: center;
+        min-height: 100vh;
       }
       .container {
         max-width: 1800px;
         width: 100%;
         background: white;
-        border-radius: 40px;
+        border-radius: 30px;
         box-shadow: 0 30px 50px rgba(0, 20, 40, 0.2);
-        padding: 32px;
+        padding: 20px;
       }
+
+      /* Responsive padding */
+      @media (min-width: 768px) {
+        .container {
+          padding: 32px;
+        }
+        body {
+          padding: 24px;
+        }
+      }
+
       h1 {
-        font-size: 2.2rem;
+        font-size: 1.6rem;
         font-weight: 700;
         color: #0a2f4a;
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 12px;
         margin-top: 0;
         margin-bottom: 12px;
       }
+
+      @media (min-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+      }
+
       .badge {
         background: #1a5f94;
         color: white;
-        padding: 6px 20px;
+        padding: 4px 12px;
         border-radius: 60px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         font-weight: 400;
+        white-space: nowrap;
+      }
+
+      @media (min-width: 768px) {
+        .badge {
+          padding: 6px 20px;
+          font-size: 0.9rem;
+        }
       }
 
       /* ========== STYLE UNTUK BOX PENJELASAN ========== */
       .explanation-box {
         background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
-        border-radius: 30px;
-        padding: 25px 30px;
-        margin-bottom: 30px;
+        border-radius: 24px;
+        padding: 20px;
+        margin-bottom: 20px;
         border: 1px solid #b8d1e6;
         box-shadow: 0 8px 20px rgba(0, 60, 120, 0.1);
       }
+
+      @media (min-width: 768px) {
+        .explanation-box {
+          border-radius: 30px;
+          padding: 25px 30px;
+          margin-bottom: 30px;
+        }
+      }
+
       .explanation-title {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         font-weight: 700;
         color: #0b3b5c;
         margin-bottom: 15px;
@@ -68,196 +108,469 @@
         align-items: center;
         gap: 12px;
       }
+
+      @media (min-width: 768px) {
+        .explanation-title {
+          font-size: 1.6rem;
+        }
+      }
+
       .explanation-title i {
         color: #f4b836;
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
+
+      @media (min-width: 768px) {
+        .explanation-title i {
+          font-size: 2rem;
+        }
+      }
+
       .analogy-grid {
         display: flex;
-        flex-wrap: wrap;
-        gap: 25px;
+        flex-direction: column;
+        gap: 15px;
         margin-top: 15px;
       }
+
+      @media (min-width: 640px) {
+        .analogy-grid {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .analogy-grid {
+          gap: 25px;
+        }
+      }
+
       .analogy-item {
-        flex: 1 1 250px;
+        flex: 1 1 100%;
         background: white;
-        border-radius: 24px;
-        padding: 22px;
+        border-radius: 20px;
+        padding: 18px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         border: 1px solid #cde0ee;
+        transition: transform 0.3s ease;
       }
+
+      @media (min-width: 640px) {
+        .analogy-item {
+          flex: 1 1 calc(50% - 10px);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .analogy-item {
+          flex: 1 1 250px;
+          padding: 22px;
+        }
+      }
+
+      .analogy-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 60, 120, 0.15);
+      }
+
       .analogy-item i {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: #1f6da9;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
+
+      @media (min-width: 768px) {
+        .analogy-item i {
+          font-size: 2rem;
+          margin-bottom: 12px;
+        }
+      }
+
       .analogy-item h3 {
-        margin: 8px 0 12px 0;
+        margin: 5px 0 10px 0;
         color: #134872;
+        font-size: 1.2rem;
       }
+
+      @media (min-width: 768px) {
+        .analogy-item h3 {
+          margin: 8px 0 12px 0;
+          font-size: 1.3rem;
+        }
+      }
+
       .analogy-item p {
         color: #2c3e50;
-        line-height: 1.5;
+        line-height: 1.4;
         margin: 0;
+        font-size: 0.95rem;
+      }
+
+      @media (min-width: 768px) {
+        .analogy-item p {
+          line-height: 1.5;
+          font-size: 1rem;
+        }
       }
 
       .flex-main {
         display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
+        flex-direction: column;
+        gap: 20px;
       }
+
+      @media (min-width: 1024px) {
+        .flex-main {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 30px;
+        }
+      }
+
       .left-col {
-        flex: 1.2;
-        min-width: 440px;
+        flex: 1;
+        min-width: 100%;
       }
+
+      @media (min-width: 1024px) {
+        .left-col {
+          flex: 1.2;
+          min-width: 440px;
+        }
+      }
+
       .right-col {
-        flex: 2;
-        min-width: 700px;
+        flex: 1;
+        min-width: 100%;
       }
+
+      @media (min-width: 1024px) {
+        .right-col {
+          flex: 2;
+          min-width: 700px;
+        }
+      }
+
       .card {
         background: #f8fbfe;
-        border-radius: 28px;
-        padding: 24px;
+        border-radius: 24px;
+        padding: 18px;
         border: 1px solid #cde0ee;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
       }
+
+      @media (min-width: 768px) {
+        .card {
+          border-radius: 28px;
+          padding: 24px;
+          margin-bottom: 24px;
+        }
+      }
+
       .card-title {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: #134872;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         border-bottom: 3px solid #b6d3e8;
         padding-bottom: 8px;
       }
+
+      @media (min-width: 768px) {
+        .card-title {
+          font-size: 1.4rem;
+          margin-bottom: 20px;
+        }
+      }
+
       .param-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
+
+      @media (min-width: 480px) {
+        .param-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .param-grid {
+          gap: 18px;
+        }
+      }
+
       .param-item {
         background: white;
-        border-radius: 20px;
-        padding: 14px 16px;
+        border-radius: 16px;
+        padding: 12px;
         box-shadow: 0 4px 10px rgba(0, 30, 60, 0.03);
         border: 1px solid #cde0ee;
       }
+
+      @media (min-width: 768px) {
+        .param-item {
+          border-radius: 20px;
+          padding: 14px 16px;
+        }
+      }
+
       .param-item label {
         font-weight: 600;
         color: #0b3d63;
         display: block;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
+        font-size: 0.9rem;
       }
+
+      @media (min-width: 768px) {
+        .param-item label {
+          margin-bottom: 6px;
+          font-size: 1rem;
+        }
+      }
+
       .param-item input,
       .param-item select {
         width: 100%;
-        padding: 12px 16px;
+        padding: 10px 12px;
         border: 1px solid #acc9e3;
-        border-radius: 40px;
-        font-size: 1rem;
+        border-radius: 30px;
+        font-size: 0.95rem;
         background: white;
       }
+
+      @media (min-width: 768px) {
+        .param-item input,
+        .param-item select {
+          padding: 12px 16px;
+          font-size: 1rem;
+        }
+      }
+
       .param-item input:focus,
       .param-item select:focus {
         border-color: #0073c8;
         outline: none;
         box-shadow: 0 0 0 3px rgba(0, 115, 200, 0.1);
       }
+
       .zone1-row {
         background: #d9eaf9;
-        border-radius: 60px;
-        padding: 15px 22px;
+        border-radius: 40px;
+        padding: 12px 15px;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 15px;
-        margin: 20px 0 10px;
+        gap: 10px;
+        margin: 15px 0 10px;
+        font-size: 0.9rem;
       }
+
+      @media (min-width: 768px) {
+        .zone1-row {
+          border-radius: 60px;
+          padding: 15px 22px;
+          gap: 15px;
+          margin: 20px 0 10px;
+          font-size: 1rem;
+        }
+      }
+
       .zone1-row span {
         font-weight: 600;
         color: #0d3b5e;
       }
+
       .zone1-row input {
-        width: 120px;
-        padding: 10px 15px;
+        width: 100px;
+        padding: 8px 12px;
         border-radius: 40px;
         border: 1px solid #7aa6c7;
+        font-size: 0.9rem;
       }
+
+      @media (min-width: 768px) {
+        .zone1-row input {
+          width: 120px;
+          padding: 10px 15px;
+          font-size: 1rem;
+        }
+      }
+
       .btn-primary {
         background: #1a5f94;
         color: white;
         border: none;
         width: 100%;
-        padding: 18px;
-        font-size: 1.3rem;
+        padding: 14px;
+        font-size: 1.1rem;
         font-weight: 700;
-        border-radius: 60px;
+        border-radius: 50px;
         cursor: pointer;
         transition: 0.2s;
-        margin: 18px 0 22px;
+        margin: 15px 0 18px;
         box-shadow: 0 10px 20px rgba(23, 85, 140, 0.3);
       }
+
+      @media (min-width: 768px) {
+        .btn-primary {
+          padding: 18px;
+          font-size: 1.3rem;
+          border-radius: 60px;
+          margin: 18px 0 22px;
+        }
+      }
+
       .btn-primary:hover {
         background: #0f4370;
         transform: scale(1.01);
       }
+
       .result-box {
         background: #deecf7;
-        border-radius: 28px;
-        padding: 20px;
+        border-radius: 24px;
+        padding: 15px;
       }
+
+      @media (min-width: 768px) {
+        .result-box {
+          border-radius: 28px;
+          padding: 20px;
+        }
+      }
+
       .result-row {
         display: flex;
-        justify-content: space-between;
-        padding: 10px 18px;
+        flex-direction: column;
+        gap: 5px;
+        padding: 8px 12px;
         border-bottom: 1px dashed #98bbd6;
       }
+
+      @media (min-width: 480px) {
+        .result-row {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .result-row {
+          padding: 10px 18px;
+        }
+      }
+
       .result-value {
         background: white;
-        padding: 4px 20px;
+        padding: 4px 12px;
         border-radius: 40px;
         font-weight: 700;
         color: #00356b;
         font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        display: inline-block;
+        width: fit-content;
       }
+
+      @media (min-width: 768px) {
+        .result-value {
+          padding: 4px 20px;
+          font-size: 1rem;
+        }
+      }
+
       .calculation-detail {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         color: #2c5282;
-        margin-top: 4px;
+        margin-top: 2px;
         padding-left: 8px;
         font-family: "Courier New", monospace;
         background: #f0f8ff;
         border-radius: 8px;
         padding: 4px 8px;
+        word-break: break-word;
       }
+
+      @media (min-width: 768px) {
+        .calculation-detail {
+          font-size: 0.85rem;
+          margin-top: 4px;
+        }
+      }
+
       .legend-inline {
         display: flex;
-        gap: 25px;
-        justify-content: flex-end;
-        margin-bottom: 12px;
         flex-wrap: wrap;
+        gap: 12px;
+        justify-content: flex-start;
+        margin-bottom: 12px;
       }
+
+      @media (min-width: 768px) {
+        .legend-inline {
+          gap: 25px;
+          justify-content: flex-end;
+        }
+      }
+
       .legend-color {
         display: inline-block;
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
         border-radius: 4px;
-        margin-right: 6px;
+        margin-right: 4px;
       }
+
+      @media (min-width: 768px) {
+        .legend-color {
+          width: 18px;
+          height: 18px;
+          margin-right: 6px;
+        }
+      }
+
       canvas {
         width: 100%;
         height: auto;
+        max-height: 400px;
         background: #ffffff;
-        border-radius: 28px;
+        border-radius: 24px;
         border: 1px solid #b8d1e6;
         padding: 4px;
       }
+
+      @media (min-width: 768px) {
+        canvas {
+          max-height: 550px;
+          border-radius: 28px;
+        }
+      }
+
       .footnote {
         background: #fef6e5;
-        border-radius: 24px;
-        padding: 16px 24px;
-        margin-top: 25px;
-        border-left: 8px solid #f3b13e;
+        border-radius: 20px;
+        padding: 14px 18px;
+        margin-top: 20px;
+        border-left: 6px solid #f3b13e;
+        font-size: 0.9rem;
       }
+
+      @media (min-width: 768px) {
+        .footnote {
+          border-radius: 24px;
+          padding: 16px 24px;
+          margin-top: 25px;
+          border-left: 8px solid #f3b13e;
+          font-size: 1rem;
+        }
+      }
+
       .dynamic-value {
         font-weight: 700;
         color: #1a5f94;
@@ -265,90 +578,186 @@
         padding: 2px 8px;
         border-radius: 20px;
         font-family: "Courier New", monospace;
+        font-size: 0.9rem;
       }
+
       .control-panel {
         background: #e8f2fa;
-        border-radius: 28px;
-        padding: 20px;
-        margin-top: 20px;
+        border-radius: 24px;
+        padding: 16px;
+        margin-top: 16px;
       }
+
+      @media (min-width: 768px) {
+        .control-panel {
+          border-radius: 28px;
+          padding: 20px;
+          margin-top: 20px;
+        }
+      }
+
       .slider-container {
         display: flex;
         align-items: center;
-        gap: 20px;
         flex-wrap: wrap;
-        margin: 15px 0;
+        gap: 10px;
+        margin: 12px 0;
       }
+
+      @media (min-width: 768px) {
+        .slider-container {
+          gap: 20px;
+          margin: 15px 0;
+        }
+      }
+
       .slider-label {
-        min-width: 180px;
+        min-width: 100%;
         font-weight: 600;
         color: #0d3b5e;
       }
+
+      @media (min-width: 480px) {
+        .slider-label {
+          min-width: 140px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .slider-label {
+          min-width: 180px;
+        }
+      }
+
       input[type="range"] {
         flex: 1;
         height: 8px;
         border-radius: 10px;
         background: #d0e2f0;
+        min-width: 200px;
       }
+
       .play-btn {
         background: #1a5f94;
         color: white;
         border: none;
-        padding: 14px 35px;
-        border-radius: 60px;
+        padding: 12px 20px;
+        border-radius: 50px;
         font-weight: 600;
         cursor: pointer;
-        margin-right: 15px;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        flex: 1;
       }
-      .play-btn:hover {
-        background: #0f4370;
+
+      @media (min-width: 768px) {
+        .play-btn {
+          padding: 14px 35px;
+          border-radius: 60px;
+          margin-right: 15px;
+          font-size: 1.1rem;
+          flex: initial;
+        }
       }
+
       .reset-btn {
         background: #6c8da8;
         color: white;
         border: none;
-        padding: 14px 35px;
-        border-radius: 60px;
+        padding: 12px 20px;
+        border-radius: 50px;
         font-weight: 600;
         cursor: pointer;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        flex: 1;
       }
+
+      @media (min-width: 768px) {
+        .reset-btn {
+          padding: 14px 35px;
+          border-radius: 60px;
+          font-size: 1.1rem;
+          flex: initial;
+        }
+      }
+
       .status-badge {
         background: #2ca02c;
         color: white;
-        padding: 8px 20px;
+        padding: 6px 15px;
         border-radius: 40px;
         font-weight: 600;
-      }
-      .real-time-values {
-        display: flex;
-        gap: 20px;
-        margin-top: 15px;
-        flex-wrap: wrap;
-        background: white;
-        padding: 15px;
-        border-radius: 30px;
-      }
-      .value-box {
-        background: #e3f0fd;
-        padding: 8px 16px;
-        border-radius: 30px;
-        font-weight: 600;
+        font-size: 0.9rem;
+        white-space: nowrap;
       }
 
-      /* Tombol play di atas grafik */
+      @media (min-width: 768px) {
+        .status-badge {
+          padding: 8px 20px;
+          font-size: 1rem;
+        }
+      }
+
+      .real-time-values {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+        background: white;
+        padding: 12px;
+        border-radius: 24px;
+      }
+
+      @media (min-width: 768px) {
+        .real-time-values {
+          gap: 20px;
+          margin-top: 15px;
+          padding: 15px;
+          border-radius: 30px;
+        }
+      }
+
+      .value-box {
+        background: #e3f0fd;
+        padding: 6px 12px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        flex: 1 1 auto;
+      }
+
+      @media (min-width: 768px) {
+        .value-box {
+          padding: 8px 16px;
+          font-size: 1rem;
+        }
+      }
+
       .chart-header {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
         margin-bottom: 15px;
-        flex-wrap: wrap;
-        gap: 15px;
       }
+
+      @media (min-width: 640px) {
+        .chart-header {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
       .chart-controls {
         display: flex;
         gap: 10px;
+        width: 100%;
+      }
+
+      @media (min-width: 640px) {
+        .chart-controls {
+          width: auto;
+        }
       }
     </style>
   </head>
@@ -364,13 +773,11 @@
       <div class="explanation-box">
         <div class="explanation-title">
           <i class="fas fa-lightbulb"></i>
-          Apa itu Loss of Excitation (Kehilangan Eksitasi)?
+          Apa itu Loss of Excitation?
         </div>
-        <p style="font-size: 1.1rem; margin-bottom: 25px; color: #1a4c6e">
+        <p style="font-size: 1rem; margin-bottom: 20px; color: #1a4c6e">
           Loss of Excitation adalah kondisi ketika generator sinkron kehilangan
-          arus DC pada rotor (medan magnet). Generator berubah menjadi motor
-          induksi dan menyerap daya reaktif besar dari sistem, yang dapat
-          menyebabkan overheating dan kerusakan.
+          arus DC pada rotor. Generator berubah menjadi motor induksi.
         </p>
 
         <div class="analogy-grid">
@@ -378,29 +785,24 @@
             <i class="fas fa-car"></i>
             <h3>🚗 Analogi Mobil</h3>
             <p>
-              Generator normal seperti mobil yang melaju dengan mesin menyala.
-              Kehilangan eksitasi seperti mobil yang tiba-tiba kehabisan
-              bensin—masih melaju karena inersia, tapi tidak bisa dikendalikan
-              dan akhirnya berhenti.
+              Generator normal seperti mobil melaju dengan mesin menyala.
+              Kehilangan eksitasi seperti mobil kehabisan bensin.
             </p>
           </div>
           <div class="analogy-item">
             <i class="fas fa-magnet"></i>
             <h3>🧲 Analogi Magnet</h3>
             <p>
-              Generator dengan eksitasi seperti magnet kuat yang menarik besi.
-              Saat eksitasi hilang, magnet melemah, dan generator mulai
-              "menyedot" daya reaktif dari sistem seperti magnet lemah yang
-              mencuri daya dari magnet lain.
+              Generator dengan eksitasi seperti magnet kuat. Saat eksitasi
+              hilang, generator "menyedot" daya reaktif dari sistem.
             </p>
           </div>
           <div class="analogy-item">
             <i class="fas fa-water"></i>
-            <h3>💧 Analogi Pompa Air</h3>
+            <h3>💧 Analogi Pompa</h3>
             <p>
-              Generator seperti pompa air yang mendorong air ke sistem (daya
-              reaktif). Jika pompa mati (kehilangan eksitasi), air malah
-              mengalir balik dan memutar pompa terbalik, merusak mekanisme.
+              Generator seperti pompa air. Jika pompa mati, air malah mengalir
+              balik dan merusak mekanisme.
             </p>
           </div>
         </div>
@@ -411,7 +813,7 @@
         <div class="left-col">
           <div class="card">
             <div class="card-title">
-              <i class="fas fa-sliders-h"></i> Parameter Generator & Proteksi
+              <i class="fas fa-sliders-h"></i> Parameter Generator
             </div>
             <div class="param-grid">
               <div class="param-item">
@@ -439,20 +841,17 @@
                 ><input type="number" id="vt_ratio" value="120" />
               </div>
               <div class="param-item">
-                <label>Tunda Z1 (detik)</label
+                <label>Tunda Z1 (s)</label
                 ><input type="number" id="t1" step="0.01" value="0.3" />
               </div>
               <div class="param-item">
-                <label>Tunda Z2 (detik)</label
+                <label>Tunda Z2 (s)</label
                 ><input type="number" id="t2" step="0.01" value="1.0" />
               </div>
             </div>
 
             <div class="zone1-row">
-              <span
-                ><i class="fas fa-circle"></i> Diameter Zona 1 (pu dari
-                Zbase):</span
-              >
+              <span><i class="fas fa-circle"></i> Diameter Zona 1:</span>
               <input
                 type="number"
                 id="zone1_dia_pu"
@@ -460,17 +859,16 @@
                 value="1.0"
                 min="0.1"
               />
-              <span style="color: #2f6080">(0.8–1.0 pu)</span>
             </div>
 
             <button class="btn-primary" id="hitungBtn">
-              <i class="fas fa-calculator"></i> Hitung Setting & Update Grafik
+              <i class="fas fa-calculator"></i> Hitung Setting
             </button>
 
-            <!-- Hasil ringkas dengan detail perhitungan -->
+            <!-- Hasil dengan detail perhitungan -->
             <div class="result-box" id="hasil">
               <div class="result-row">
-                <span>Impedansi dasar (Zbase) :</span>
+                <span>Zbase :</span>
                 <span class="result-value" id="res_zbase">—</span>
               </div>
               <div class="calculation-detail" id="calc_zbase">
@@ -478,115 +876,106 @@
               </div>
 
               <div class="result-row">
-                <span>Xd (Ohm primer) :</span>
+                <span>Xd primer :</span>
                 <span class="result-value" id="res_xd_ohm">—</span>
               </div>
               <div class="calculation-detail" id="calc_xd">
-                Xd (primer) = Xd(pu) × Zbase
+                Xd = Xd(pu) × Zbase
               </div>
 
               <div class="result-row">
-                <span>X'd (Ohm primer) :</span>
+                <span>X'd primer :</span>
                 <span class="result-value" id="res_xd1_ohm">—</span>
               </div>
               <div class="calculation-detail" id="calc_xd1">
-                X'd (primer) = X'd(pu) × Zbase
+                X'd = X'd(pu) × Zbase
               </div>
 
               <div class="result-row">
-                <span>Offset (-X'd/2) primer :</span>
+                <span>Offset primer :</span>
                 <span class="result-value" id="res_offset_prim">—</span>
               </div>
               <div class="calculation-detail" id="calc_offset_prim">
-                Offset = -X'd / 2
+                Offset = -X'd/2
               </div>
 
               <div
                 class="result-row"
                 style="background: #c9e2f5; border-radius: 30px"
               >
-                <span>Zona 1 diameter (primer Ω) :</span>
+                <span>Zona 1 primer :</span>
                 <span class="result-value" id="res_z1_dia_prim">—</span>
               </div>
               <div class="calculation-detail" id="calc_z1_prim">
-                Zona 1 (primer) = diameter(pu) × Zbase
+                Z1 = diameter(pu) × Zbase
               </div>
 
               <div class="result-row">
-                <span>Zona 2 diameter (primer Ω) :</span>
+                <span>Zona 2 primer :</span>
                 <span class="result-value" id="res_z2_dia_prim">—</span>
               </div>
               <div class="calculation-detail" id="calc_z2_prim">
-                Zona 2 (primer) = Xd (primer)
+                Z2 = Xd primer
               </div>
 
               <div class="result-row">
-                <span>Faktor konversi (k) :</span>
+                <span>Faktor k :</span>
                 <span class="result-value" id="res_k_factor">—</span>
               </div>
-              <div class="calculation-detail" id="calc_k">
-                k = Rasio CT / Rasio VT
-              </div>
+              <div class="calculation-detail" id="calc_k">k = CT / VT</div>
 
               <div class="result-row">
-                <span>Offset (relay Ω) :</span>
+                <span>Offset relay :</span>
                 <span class="result-value" id="res_offset_relay">—</span>
               </div>
               <div class="calculation-detail" id="calc_offset_relay">
-                Offset (relay) = Offset(primer) × k
+                Offset relay = offset primer × k
               </div>
 
               <div class="result-row">
-                <span>Zona 1 diameter (relay Ω) :</span>
+                <span>Z1 relay :</span>
                 <span class="result-value" id="res_z1_dia_relay">—</span>
               </div>
               <div class="calculation-detail" id="calc_z1_relay">
-                Zona 1 (relay) = Zona 1(primer) × k
+                Z1 relay = Z1 primer × k
               </div>
 
               <div class="result-row">
-                <span>Zona 2 diameter (relay Ω) :</span>
+                <span>Z2 relay :</span>
                 <span class="result-value" id="res_z2_dia_relay">—</span>
               </div>
               <div class="calculation-detail" id="calc_z2_relay">
-                Zona 2 (relay) = Zona 2(primer) × k
+                Z2 relay = Z2 primer × k
               </div>
 
               <div class="result-row">
-                <span>Tunda Z1 / Z2 :</span>
+                <span>Tunda Z1/Z2 :</span>
                 <span class="result-value" id="res_times">—</span>
               </div>
             </div>
           </div>
 
-          <!-- Panel Kontrol Animasi & Input Operasi -->
+          <!-- Panel Kontrol Animasi -->
           <div class="control-panel">
             <div class="card-title">
-              <i class="fas fa-play-circle"></i> Simulasi LOE Realistis (V↓ I↑)
+              <i class="fas fa-play-circle"></i> Simulasi LOE
             </div>
 
-            <div class="param-grid" style="margin-bottom: 20px">
+            <div class="param-grid" style="margin-bottom: 15px">
               <div class="param-item">
-                <label>Arus awal I₀ (A) primer</label
+                <label>Arus I₀ (A)</label
                 ><input type="number" id="i_operasi" step="10" value="8000" />
               </div>
               <div class="param-item">
-                <label>Tegangan awal V₀ (kV) primer</label
+                <label>Tegangan V₀ (kV)</label
                 ><input type="number" id="v_operasi" step="0.1" value="16.0" />
               </div>
               <div class="param-item">
-                <label>Faktor daya awal</label
-                ><input
-                  type="number"
-                  id="cosphi"
-                  step="0.01"
-                  value="0.85"
-                  min="0"
-                  max="1"
-                />
+                <label>Faktor daya</label
+                ><input type="number" id="cosphi" step="0.01" value="0.85" />
               </div>
               <div class="param-item">
-                <label>Arah awal</label>
+                <label>Arah</label>
                 <select id="power_direction">
                   <option value="ind" selected>Induktif</option>
                   <option value="cap">Kapasitif</option>
@@ -595,9 +984,7 @@
             </div>
 
             <div class="slider-container">
-              <span class="slider-label"
-                ><i class="fas fa-chart-line"></i> Waktu (detik):</span
-              >
+              <span class="slider-label">Waktu:</span>
               <input
                 type="range"
                 id="time_progress"
@@ -610,7 +997,7 @@
             </div>
 
             <div class="real-time-values">
-              <div class="value-box">V = <span id="rt_v">16.00</span> kV</div>
+              <div class="value-box">V = <span id="rt_v">16.0</span> kV</div>
               <div class="value-box">I = <span id="rt_i">8000</span> A</div>
               <div class="value-box">R = <span id="rt_r">0.00</span> Ω</div>
               <div class="value-box">X = <span id="rt_x">0.00</span> Ω</div>
@@ -622,31 +1009,25 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 10px;
+                flex-wrap: wrap;
+                gap: 10px;
               "
             >
-              <span
-                ><i class="fas fa-info-circle"></i> Status:
-                <span id="status_trip">Normal</span></span
-              >
-              <span
-                class="status-badge"
-                id="trip_indicator"
-                style="background: #2ca02c"
-                >Aman</span
-              >
+              <span>Status: <span id="status_trip">Normal</span></span>
+              <span class="status-badge" id="trip_indicator">Aman</span>
             </div>
           </div>
         </div>
 
-        <!-- Kolom Kanan: Grafik dengan Tombol Play di Atas -->
+        <!-- Kolom Kanan: Grafik -->
         <div class="right-col">
           <div class="chart-header">
-            <h3 style="color: #154c73; margin: 0">
+            <h3 style="color: #154c73; margin: 0; font-size: 1.2rem">
               <i class="fas fa-chart-scatter"></i> Trajektori Z Selama LOE
             </h3>
             <div class="chart-controls">
               <button class="play-btn" id="playBtn">
-                <i class="fas fa-play"></i> Animasi LOE
+                <i class="fas fa-play"></i> Animasi
               </button>
               <button class="reset-btn" id="resetBtn">
                 <i class="fas fa-undo"></i> Reset
@@ -673,15 +1054,12 @@
             >
           </div>
 
-          <canvas id="mhoChart" width="800" height="550"></canvas>
+          <canvas id="mhoChart" width="800" height="500"></canvas>
 
           <div class="footnote">
-            <i class="fas fa-lightbulb" style="margin-right: 12px"></i>
-            <strong>Bagaimana membaca grafik:</strong> Titik merah adalah
-            impedansi saat ini. Saat kehilangan eksitasi, impedansi bergerak ke
-            kuadran bawah (X negatif). Proteksi akan trip jika titik merah
-            memasuki Zona 2 lebih dari waktu tunda, atau segera jika masuk Zona
-            1.
+            <i class="fas fa-lightbulb" style="margin-right: 8px"></i>
+            <strong>Tips:</strong> Titik merah = impedansi saat ini. Saat LOE,
+            impedansi bergerak ke kuadran bawah (X negatif).
           </div>
         </div>
       </div>
@@ -770,27 +1148,16 @@
 
         // ==================== FUNGSI PERHITUNGAN ====================
         function hitungSetting() {
-          let s = parseFloat(sInp.value);
-          let v = parseFloat(vInp.value);
-          let xd_pu = parseFloat(xdPu.value);
-          let xd1_pu = parseFloat(xd1Pu.value);
-          let ct = parseFloat(ctInp.value);
-          let vt = parseFloat(vtInp.value);
-          let t1 = parseFloat(t1Inp.value);
-          let t2 = parseFloat(t2Inp.value);
-          let z1pu = parseFloat(z1diaPu.value);
+          let s = parseFloat(sInp.value) || 210;
+          let v = parseFloat(vInp.value) || 16;
+          let xd_pu = parseFloat(xdPu.value) || 1.8;
+          let xd1_pu = parseFloat(xd1Pu.value) || 0.25;
+          let ct = parseFloat(ctInp.value) || 2000;
+          let vt = parseFloat(vtInp.value) || 120;
+          let t1 = parseFloat(t1Inp.value) || 0.3;
+          let t2 = parseFloat(t2Inp.value) || 1.0;
+          let z1pu = parseFloat(z1diaPu.value) || 1.0;
 
-          if (isNaN(s) || s <= 0) s = 210;
-          if (isNaN(v) || v <= 0) v = 16;
-          if (isNaN(xd_pu) || xd_pu <= 0) xd_pu = 1.8;
-          if (isNaN(xd1_pu) || xd1_pu <= 0) xd1_pu = 0.25;
-          if (isNaN(ct) || ct <= 0) ct = 2000;
-          if (isNaN(vt) || vt <= 0) vt = 120;
-          if (isNaN(t1)) t1 = 0.3;
-          if (isNaN(t2)) t2 = 1.0;
-          if (isNaN(z1pu) || z1pu <= 0) z1pu = 1.0;
-
-          // Perhitungan detail
           const zBase = (v * v) / s;
           const xd_ohm_prim = xd_pu * zBase;
           const xd1_ohm_prim = xd1_pu * zBase;
@@ -805,29 +1172,29 @@
           const dia2_relay = dia2_prim * k;
 
           // Update hasil numerik
-          resZbase.innerText = zBase.toFixed(4) + " Ω";
-          resXdOhm.innerText = xd_ohm_prim.toFixed(4) + " Ω";
-          resXd1Ohm.innerText = xd1_ohm_prim.toFixed(4) + " Ω";
-          resOffsetPrim.innerText = offset_prim.toFixed(4) + " Ω";
-          resZ1diaPrim.innerText = dia1_prim.toFixed(4) + " Ω";
-          resZ2diaPrim.innerText = dia2_prim.toFixed(4) + " Ω";
-          resKFactor.innerText = k.toFixed(4);
-          resOffsetRelay.innerText = offset_relay.toFixed(4) + " Ω";
-          resZ1diaRelay.innerText = dia1_relay.toFixed(4) + " Ω";
-          resZ2diaRelay.innerText = dia2_relay.toFixed(4) + " Ω";
-          resTimes.innerText = t1.toFixed(2) + " s / " + t2.toFixed(2) + " s";
+          resZbase.innerText = zBase.toFixed(3) + " Ω";
+          resXdOhm.innerText = xd_ohm_prim.toFixed(3) + " Ω";
+          resXd1Ohm.innerText = xd1_ohm_prim.toFixed(3) + " Ω";
+          resOffsetPrim.innerText = offset_prim.toFixed(3) + " Ω";
+          resZ1diaPrim.innerText = dia1_prim.toFixed(3) + " Ω";
+          resZ2diaPrim.innerText = dia2_prim.toFixed(3) + " Ω";
+          resKFactor.innerText = k.toFixed(2);
+          resOffsetRelay.innerText = offset_relay.toFixed(2) + " Ω";
+          resZ1diaRelay.innerText = dia1_relay.toFixed(2) + " Ω";
+          resZ2diaRelay.innerText = dia2_relay.toFixed(2) + " Ω";
+          resTimes.innerText = t1.toFixed(2) + "s / " + t2.toFixed(2) + "s";
 
-          // Update detail perhitungan dengan nilai aktual
-          calcZbase.innerText = `Zbase = V² / S = ${v.toFixed(1)}² / ${s.toFixed(1)} = ${zBase.toFixed(4)} Ω`;
-          calcXd.innerText = `Xd (primer) = Xd(pu) × Zbase = ${xd_pu.toFixed(2)} × ${zBase.toFixed(4)} = ${xd_ohm_prim.toFixed(4)} Ω`;
-          calcXd1.innerText = `X'd (primer) = X'd(pu) × Zbase = ${xd1_pu.toFixed(2)} × ${zBase.toFixed(4)} = ${xd1_ohm_prim.toFixed(4)} Ω`;
-          calcOffsetPrim.innerText = `Offset = -X'd/2 = -${xd1_ohm_prim.toFixed(4)} / 2 = ${offset_prim.toFixed(4)} Ω`;
-          calcZ1Prim.innerText = `Zona 1 (primer) = diameter(pu) × Zbase = ${z1pu.toFixed(2)} × ${zBase.toFixed(4)} = ${dia1_prim.toFixed(4)} Ω`;
-          calcZ2Prim.innerText = `Zona 2 (primer) = Xd (primer) = ${xd_ohm_prim.toFixed(4)} Ω`;
-          calcK.innerText = `k = Rasio CT / Rasio VT = ${ct} / ${vt} = ${k.toFixed(4)}`;
-          calcOffsetRelay.innerText = `Offset (relay) = Offset(primer) × k = ${offset_prim.toFixed(4)} × ${k.toFixed(4)} = ${offset_relay.toFixed(4)} Ω`;
-          calcZ1Relay.innerText = `Zona 1 (relay) = Zona 1(primer) × k = ${dia1_prim.toFixed(4)} × ${k.toFixed(4)} = ${dia1_relay.toFixed(4)} Ω`;
-          calcZ2Relay.innerText = `Zona 2 (relay) = Zona 2(primer) × k = ${dia2_prim.toFixed(4)} × ${k.toFixed(4)} = ${dia2_relay.toFixed(4)} Ω`;
+          // Update detail perhitungan
+          calcZbase.innerText = `Zbase = ${v.toFixed(1)}² / ${s.toFixed(1)} = ${zBase.toFixed(3)} Ω`;
+          calcXd.innerText = `Xd = ${xd_pu.toFixed(2)} × ${zBase.toFixed(3)} = ${xd_ohm_prim.toFixed(3)} Ω`;
+          calcXd1.innerText = `X'd = ${xd1_pu.toFixed(2)} × ${zBase.toFixed(3)} = ${xd1_ohm_prim.toFixed(3)} Ω`;
+          calcOffsetPrim.innerText = `Offset = -${xd1_ohm_prim.toFixed(3)}/2 = ${offset_prim.toFixed(3)} Ω`;
+          calcZ1Prim.innerText = `Z1 = ${z1pu.toFixed(2)} × ${zBase.toFixed(3)} = ${dia1_prim.toFixed(3)} Ω`;
+          calcZ2Prim.innerText = `Z2 = Xd = ${xd_ohm_prim.toFixed(3)} Ω`;
+          calcK.innerText = `k = ${ct}/${vt} = ${k.toFixed(2)}`;
+          calcOffsetRelay.innerText = `Offset relay = ${offset_prim.toFixed(3)} × ${k.toFixed(2)} = ${offset_relay.toFixed(2)} Ω`;
+          calcZ1Relay.innerText = `Z1 relay = ${dia1_prim.toFixed(3)} × ${k.toFixed(2)} = ${dia1_relay.toFixed(2)} Ω`;
+          calcZ2Relay.innerText = `Z2 relay = ${dia2_prim.toFixed(3)} × ${k.toFixed(2)} = ${dia2_relay.toFixed(2)} Ω`;
 
           currentSettings = {
             zBase,
@@ -945,7 +1312,7 @@
                   data: [{ x: 0, y: 0 }],
                   borderColor: "#d62728",
                   backgroundColor: "#d62728",
-                  pointRadius: 8,
+                  pointRadius: 6,
                   pointStyle: "circle",
                 },
                 {
@@ -981,7 +1348,7 @@
             options: {
               responsive: true,
               maintainAspectRatio: true,
-              aspectRatio: 1.2,
+              aspectRatio: window.innerWidth < 768 ? 0.8 : 1.2,
               animation: false,
               plugins: {
                 tooltip: { enabled: false },
@@ -989,16 +1356,26 @@
               },
               scales: {
                 x: {
-                  title: { display: true, text: "R (Ohm sekunder)" },
+                  title: {
+                    display: true,
+                    text: "R (Ω sekunder)",
+                    font: { size: window.innerWidth < 768 ? 10 : 12 },
+                  },
                   min: axisLimits.minX,
                   max: axisLimits.maxX,
                   grid: { color: "#d0d0d0" },
+                  ticks: { font: { size: window.innerWidth < 768 ? 8 : 10 } },
                 },
                 y: {
-                  title: { display: true, text: "X (Ohm sekunder)" },
+                  title: {
+                    display: true,
+                    text: "X (Ω sekunder)",
+                    font: { size: window.innerWidth < 768 ? 10 : 12 },
+                  },
                   min: axisLimits.minY,
                   max: axisLimits.maxY,
                   grid: { color: "#d0d0d0" },
+                  ticks: { font: { size: window.innerWidth < 768 ? 8 : 10 } },
                 },
               },
             },
@@ -1047,6 +1424,8 @@
         }
 
         function updateZAtTime(t) {
+          if (!trajectoryPoints.length) return;
+
           let idx = 0;
           for (let i = 0; i < trajectoryPoints.length; i++) {
             if (trajectoryPoints[i].t <= t) idx = i;
@@ -1059,10 +1438,10 @@
           }));
           chart.data.datasets[2].data = [{ x: point.R, y: point.X }];
 
-          rtV.innerText = point.V.toFixed(2);
-          rtI.innerText = point.I.toFixed(0);
-          rtR.innerText = point.R.toFixed(4);
-          rtX.innerText = point.X.toFixed(4);
+          rtV.innerText = point.V.toFixed(1);
+          rtI.innerText = Math.round(point.I);
+          rtR.innerText = point.R.toFixed(2);
+          rtX.innerText = point.X.toFixed(2);
 
           let inZone1 = false;
           let inZone2 = false;
@@ -1078,16 +1457,16 @@
           if (dist2 <= currentSettings.dia2_relay / 2) inZone2 = true;
 
           if (inZone1) {
-            statusTrip.innerText = "ZONA 1 - TRIP CEPAT!";
+            statusTrip.innerText = "ZONA 1";
             tripIndicator.innerText = "TRIP";
             tripIndicator.style.background = "#d62728";
           } else if (inZone2 && t >= currentSettings.t2) {
-            statusTrip.innerText = `ZONA 2 - TRIP (t>=${currentSettings.t2}s)`;
+            statusTrip.innerText = "ZONA 2";
             tripIndicator.innerText = "TRIP";
             tripIndicator.style.background = "#d62728";
           } else if (inZone2) {
-            statusTrip.innerText = `ZONA 2 - perlu ${(currentSettings.t2 - t).toFixed(2)}s lagi`;
-            tripIndicator.innerText = "WARNING";
+            statusTrip.innerText = "ZONA 2";
+            tripIndicator.innerText = "WARN";
             tripIndicator.style.background = "#ff7f0e";
           } else {
             statusTrip.innerText = "Normal";
@@ -1132,7 +1511,7 @@
             timeSlider.value = t;
             timeValue.innerText = t.toFixed(2) + " s";
             updateZAtTime(t);
-          }, 30);
+          }, 50);
         }
 
         function resetAnimation() {
@@ -1153,6 +1532,22 @@
             trajectoryPoints = generateTrajectory();
             resetAnimation();
           });
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+          if (chart) {
+            chart.options.aspectRatio = window.innerWidth < 768 ? 0.8 : 1.2;
+            chart.options.scales.x.title.font.size =
+              window.innerWidth < 768 ? 10 : 12;
+            chart.options.scales.y.title.font.size =
+              window.innerWidth < 768 ? 10 : 12;
+            chart.options.scales.x.ticks.font.size =
+              window.innerWidth < 768 ? 8 : 10;
+            chart.options.scales.y.ticks.font.size =
+              window.innerWidth < 768 ? 8 : 10;
+            chart.update();
+          }
         });
 
         window.addEventListener("load", () => {

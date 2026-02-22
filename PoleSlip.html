@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
     <title>Pembelajaran Pole Slip Protection: Analogi & Memory Blinder</title>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -21,178 +24,400 @@
       body {
         background: #e9f0f7;
         margin: 0;
-        padding: 24px;
+        padding: 12px;
         display: flex;
         justify-content: center;
+        min-height: 100vh;
       }
       .container {
         max-width: 1800px;
         width: 100%;
         background: white;
-        border-radius: 40px;
+        border-radius: 30px;
         box-shadow: 0 30px 50px rgba(0, 20, 40, 0.2);
-        padding: 32px;
+        padding: 20px;
       }
+
+      /* Responsive padding untuk tablet/desktop */
+      @media (min-width: 768px) {
+        .container {
+          padding: 32px;
+        }
+        body {
+          padding: 24px;
+        }
+      }
+
       h1 {
-        font-size: 2.2rem;
+        font-size: 1.6rem;
         font-weight: 700;
         color: #0a2f4a;
         display: flex;
         align-items: center;
-        gap: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
         margin-top: 0;
         margin-bottom: 12px;
       }
+
+      @media (min-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+      }
+
       .badge {
         background: #1a5f94;
         color: white;
-        padding: 6px 20px;
+        padding: 4px 12px;
         border-radius: 60px;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         font-weight: 400;
+        white-space: nowrap;
+      }
+
+      @media (min-width: 768px) {
+        .badge {
+          padding: 6px 20px;
+          font-size: 0.9rem;
+        }
       }
 
       /* ========== STYLE UNTUK BOX PENJELASAN ========== */
       .explanation-box {
         background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
-        border-radius: 30px;
-        padding: 25px 30px;
-        margin-bottom: 30px;
+        border-radius: 24px;
+        padding: 18px;
+        margin-bottom: 20px;
         border: 1px solid #b8d1e6;
         box-shadow: 0 8px 20px rgba(0, 60, 120, 0.1);
       }
+
+      @media (min-width: 768px) {
+        .explanation-box {
+          border-radius: 30px;
+          padding: 25px 30px;
+          margin-bottom: 30px;
+        }
+      }
+
       .explanation-title {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         font-weight: 700;
         color: #0b3b5c;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
       }
+
+      @media (min-width: 768px) {
+        .explanation-title {
+          font-size: 1.6rem;
+          margin-bottom: 15px;
+          gap: 12px;
+        }
+      }
+
       .explanation-title i {
         color: #f4b836;
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
+
+      @media (min-width: 768px) {
+        .explanation-title i {
+          font-size: 2rem;
+        }
+      }
+
+      .explanation-box p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      @media (min-width: 768px) {
+        .explanation-box p {
+          font-size: 1.1rem;
+          margin-bottom: 25px;
+        }
+      }
+
       .analogy-grid {
         display: flex;
-        flex-wrap: wrap;
-        gap: 25px;
+        flex-direction: column;
+        gap: 15px;
         margin-top: 15px;
       }
+
+      @media (min-width: 640px) {
+        .analogy-grid {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .analogy-grid {
+          gap: 25px;
+        }
+      }
+
       .analogy-item {
-        flex: 1 1 250px;
+        flex: 1 1 100%;
         background: white;
-        border-radius: 24px;
-        padding: 22px;
+        border-radius: 20px;
+        padding: 16px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         border: 1px solid #cde0ee;
         transition: transform 0.3s ease;
       }
+
+      @media (min-width: 640px) {
+        .analogy-item {
+          flex: 1 1 calc(50% - 8px);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .analogy-item {
+          flex: 1 1 250px;
+          padding: 22px;
+        }
+      }
+
       .analogy-item:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 60, 120, 0.15);
       }
+
       .analogy-item i {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: #1f6da9;
-        margin-bottom: 12px;
-      }
-      .analogy-item h3 {
-        margin: 8px 0 12px 0;
-        color: #134872;
-      }
-      .analogy-item p {
-        color: #2c3e50;
-        line-height: 1.5;
-        margin: 0;
+        margin-bottom: 10px;
       }
 
-      /* Layout utama */
+      @media (min-width: 768px) {
+        .analogy-item i {
+          font-size: 2rem;
+          margin-bottom: 12px;
+        }
+      }
+
+      .analogy-item h3 {
+        margin: 5px 0 8px 0;
+        color: #134872;
+        font-size: 1.1rem;
+      }
+
+      @media (min-width: 768px) {
+        .analogy-item h3 {
+          margin: 8px 0 12px 0;
+          font-size: 1.3rem;
+        }
+      }
+
+      .analogy-item p {
+        color: #2c3e50;
+        line-height: 1.4;
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      @media (min-width: 768px) {
+        .analogy-item p {
+          line-height: 1.5;
+          font-size: 1rem;
+        }
+      }
+
+      /* Layout utama - Grid responsive */
       .dashboard {
         display: grid;
-        grid-template-columns: 1.2fr 2fr 1.2fr;
-        gap: 25px;
-        margin-bottom: 25px;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      @media (min-width: 1024px) {
+        .dashboard {
+          grid-template-columns: 1.2fr 2fr 1.2fr;
+          gap: 25px;
+          margin-bottom: 25px;
+        }
       }
 
       /* Panel kiri - Perhitungan & Rumus */
       .panel-left {
         background: #f8fbfe;
-        border-radius: 28px;
-        padding: 20px;
+        border-radius: 24px;
+        padding: 16px;
         border: 1px solid #cde0ee;
       }
+
+      @media (min-width: 768px) {
+        .panel-left {
+          border-radius: 28px;
+          padding: 20px;
+        }
+      }
+
       .panel-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         color: #134872;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         border-bottom: 3px solid #b6d3e8;
-        padding-bottom: 10px;
+        padding-bottom: 8px;
       }
+
+      @media (min-width: 768px) {
+        .panel-title {
+          font-size: 1.3rem;
+          margin-bottom: 20px;
+          gap: 10px;
+          padding-bottom: 10px;
+        }
+      }
+
       .formula-box {
         background: white;
-        border-radius: 20px;
-        padding: 15px;
-        margin-bottom: 20px;
+        border-radius: 16px;
+        padding: 12px;
+        margin-bottom: 15px;
         box-shadow: 0 4px 6px rgba(0, 30, 60, 0.05);
-        border-left: 6px solid #1a5f94;
+        border-left: 4px solid #1a5f94;
         border: 1px solid #cde0ee;
       }
+
+      @media (min-width: 768px) {
+        .formula-box {
+          border-radius: 20px;
+          padding: 15px;
+          margin-bottom: 20px;
+          border-left: 6px solid #1a5f94;
+        }
+      }
+
       .formula {
-        font-size: 1.1rem;
-        padding: 10px;
+        font-size: 0.95rem;
+        padding: 8px;
         background: #e8f2fa;
-        border-radius: 12px;
-        margin: 10px 0;
+        border-radius: 10px;
+        margin: 8px 0;
         color: #0b3d63;
         font-family: "Courier New", monospace;
+        overflow-x: auto;
+        white-space: nowrap;
       }
+
+      @media (min-width: 768px) {
+        .formula {
+          font-size: 1.1rem;
+          padding: 10px;
+          border-radius: 12px;
+          margin: 10px 0;
+          white-space: normal;
+        }
+      }
+
       .calc-step {
         display: flex;
-        justify-content: space-between;
-        padding: 8px 12px;
+        flex-direction: column;
+        gap: 4px;
+        padding: 6px 10px;
         background: #f0f7ff;
-        border-radius: 10px;
+        border-radius: 8px;
         margin: 5px 0;
         font-family: "Courier New", monospace;
         border: 1px solid #b8d1e6;
+        font-size: 0.85rem;
       }
+
+      @media (min-width: 480px) {
+        .calc-step {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .calc-step {
+          padding: 8px 12px;
+          border-radius: 10px;
+          font-size: 1rem;
+        }
+      }
+
       .value-highlight {
         background: #1a5f94;
         color: white;
-        padding: 2px 10px;
+        padding: 2px 8px;
         border-radius: 20px;
         font-weight: 600;
+        font-size: 0.85rem;
+        white-space: nowrap;
+      }
+
+      @media (min-width: 768px) {
+        .value-highlight {
+          padding: 2px 10px;
+          font-size: 0.9rem;
+        }
       }
 
       /* Panel tengah - Grafik */
       .panel-center {
         background: white;
-        border-radius: 28px;
-        padding: 20px;
+        border-radius: 24px;
+        padding: 16px;
         box-shadow: 0 10px 30px rgba(0, 30, 60, 0.1);
         border: 1px solid #cde0ee;
       }
+
+      @media (min-width: 768px) {
+        .panel-center {
+          border-radius: 28px;
+          padding: 20px;
+        }
+      }
+
       .mode-selector {
         display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 15px;
       }
+
+      @media (min-width: 768px) {
+        .mode-selector {
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+      }
+
       .mode-btn {
         flex: 1;
-        padding: 15px;
+        padding: 12px;
         border: none;
-        border-radius: 60px;
+        border-radius: 40px;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         cursor: pointer;
         transition: 0.3s;
       }
+
+      @media (min-width: 768px) {
+        .mode-btn {
+          padding: 15px;
+          border-radius: 60px;
+          font-size: 1.1rem;
+        }
+      }
+
       .mode-btn.normal {
         background: #2ca02c;
         color: white;
@@ -208,63 +433,119 @@
 
       .chart-container {
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
+
       canvas {
         width: 100%;
         height: auto;
-        border-radius: 28px;
+        max-height: 350px;
+        border-radius: 20px;
         border: 2px solid #b8d1e6;
         background: white;
       }
 
+      @media (min-width: 768px) {
+        canvas {
+          max-height: 500px;
+          border-radius: 28px;
+        }
+      }
+
       .legend-row {
         display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 15px;
         flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+        font-size: 0.8rem;
       }
+
+      @media (min-width: 768px) {
+        .legend-row {
+          gap: 20px;
+          margin-top: 15px;
+          font-size: 0.9rem;
+        }
+      }
+
       .legend-color {
         display: inline-block;
-        width: 18px;
-        height: 18px;
-        border-radius: 4px;
-        margin-right: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        margin-right: 4px;
+      }
+
+      @media (min-width: 768px) {
+        .legend-color {
+          width: 18px;
+          height: 18px;
+          border-radius: 4px;
+          margin-right: 6px;
+        }
       }
 
       /* Panel kanan - Simulasi & Status dengan MEMORY */
       .panel-right {
         background: #f8fbfe;
-        border-radius: 28px;
-        padding: 20px;
+        border-radius: 24px;
+        padding: 16px;
         border: 1px solid #cde0ee;
+      }
+
+      @media (min-width: 768px) {
+        .panel-right {
+          border-radius: 28px;
+          padding: 20px;
+        }
       }
 
       /* Memory Section */
       .memory-section {
         background: #d9eaf9;
-        border-radius: 20px;
-        padding: 15px;
-        margin-bottom: 20px;
+        border-radius: 16px;
+        padding: 12px;
+        margin-bottom: 15px;
         border: 2px solid #f4b836;
       }
+
+      @media (min-width: 768px) {
+        .memory-section {
+          border-radius: 20px;
+          padding: 15px;
+          margin-bottom: 20px;
+        }
+      }
+
       .memory-title {
         color: #0d3b5e;
         font-weight: 700;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
+        font-size: 1rem;
       }
+
+      @media (min-width: 768px) {
+        .memory-title {
+          margin-bottom: 15px;
+          gap: 10px;
+          font-size: 1.1rem;
+        }
+      }
+
       .memory-circles {
         display: flex;
         justify-content: space-around;
-        margin: 15px 0;
+        margin: 10px 0;
+        gap: 10px;
       }
+
       .memory-circle {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         display: flex;
         flex-direction: column;
@@ -273,7 +554,27 @@
         background: white;
         border: 3px solid #7aa6c7;
         transition: 0.3s;
+        font-size: 0.8rem;
       }
+
+      @media (min-width: 768px) {
+        .memory-circle {
+          width: 70px;
+          height: 70px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .memory-circle span:first-child {
+        font-size: 1.2rem;
+      }
+
+      @media (min-width: 768px) {
+        .memory-circle span:first-child {
+          font-size: 1.5rem;
+        }
+      }
+
       .memory-circle.remembered {
         background: #f4b836;
         border-color: #f39c12;
@@ -288,197 +589,353 @@
       .status-cards {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 15px;
       }
+
+      @media (min-width: 768px) {
+        .status-cards {
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+      }
+
       .status-card {
         background: white;
-        border-radius: 20px;
-        padding: 15px;
+        border-radius: 16px;
+        padding: 12px;
         text-align: center;
         border: 1px solid #cde0ee;
       }
+
+      @media (min-width: 768px) {
+        .status-card {
+          border-radius: 20px;
+          padding: 15px;
+        }
+      }
+
       .status-value {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 800;
-        margin: 10px 0;
+        margin: 5px 0;
         color: #1a5f94;
+      }
+
+      @media (min-width: 768px) {
+        .status-value {
+          font-size: 2rem;
+          margin: 10px 0;
+        }
       }
 
       .slider-container {
         background: #e8f2fa;
-        border-radius: 30px;
-        padding: 20px;
-        margin: 20px 0;
+        border-radius: 24px;
+        padding: 15px;
+        margin: 15px 0;
       }
+
+      @media (min-width: 768px) {
+        .slider-container {
+          border-radius: 30px;
+          padding: 20px;
+          margin: 20px 0;
+        }
+      }
+
       .slider-label {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         color: #0d3b5e;
         font-weight: 600;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        gap: 5px;
       }
+
+      @media (min-width: 768px) {
+        .slider-label {
+          margin-bottom: 10px;
+          font-size: 1rem;
+        }
+      }
+
       input[type="range"] {
         width: 100%;
-        height: 10px;
+        height: 8px;
         border-radius: 10px;
         background: #d0e2f0;
       }
 
-      .indicator-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin: 20px 0;
-      }
-      .indicator {
-        background: white;
-        border-radius: 15px;
-        padding: 15px;
-        text-align: center;
-        border: 1px solid #cde0ee;
-      }
-      .indicator.active {
-        background: #2ca02c;
-        color: white;
-      }
-      .indicator.tripped {
-        background: #d62728;
-        color: white;
+      @media (min-width: 768px) {
+        input[type="range"] {
+          height: 10px;
+        }
       }
 
       .event-log {
         background: #0a2f4a;
         color: #b8d1e6;
         font-family: "Courier New", monospace;
-        padding: 15px;
-        border-radius: 15px;
-        height: 150px;
+        padding: 12px;
+        border-radius: 12px;
+        height: 120px;
         overflow-y: auto;
-        font-size: 0.9rem;
-        margin-top: 20px;
+        font-size: 0.8rem;
+        margin-top: 15px;
         border: 1px solid #1a5f94;
+      }
+
+      @media (min-width: 768px) {
+        .event-log {
+          padding: 15px;
+          border-radius: 15px;
+          height: 150px;
+          font-size: 0.9rem;
+          margin-top: 20px;
+        }
       }
 
       .control-buttons {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         margin-top: 15px;
       }
+
+      @media (min-width: 768px) {
+        .control-buttons {
+          gap: 10px;
+          margin-top: 15px;
+        }
+      }
+
+      .btn-normal,
+      .btn-trip,
+      .btn-reset {
+        padding: 10px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
+      }
+
+      @media (min-width: 768px) {
+        .btn-normal,
+        .btn-trip,
+        .btn-reset {
+          padding: 12px;
+          border-radius: 30px;
+          font-size: 1rem;
+        }
+      }
+
       .btn-normal {
         flex: 1;
         background: #2ca02c;
         color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 30px;
-        font-weight: 600;
-        cursor: pointer;
       }
       .btn-trip {
         flex: 1;
         background: #d62728;
         color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 30px;
-        font-weight: 600;
-        cursor: pointer;
       }
       .btn-reset {
         flex: 0.5;
         background: #6c8da8;
         color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 30px;
-        font-weight: 600;
-        cursor: pointer;
       }
 
       /* Panel bawah - Perbandingan & Analisis */
       .comparison-panel {
-        margin-top: 30px;
+        margin-top: 20px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+        grid-template-columns: 1fr;
+        gap: 15px;
       }
+
+      @media (min-width: 768px) {
+        .comparison-panel {
+          margin-top: 30px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 25px;
+        }
+      }
+
       .comparison-card {
         background: #f8fbfe;
-        border-radius: 25px;
-        padding: 25px;
+        border-radius: 20px;
+        padding: 18px;
         border: 2px solid;
       }
+
+      @media (min-width: 768px) {
+        .comparison-card {
+          border-radius: 25px;
+          padding: 25px;
+        }
+      }
+
       .comparison-card.normal {
         border-color: #2ca02c;
       }
       .comparison-card.trip {
         border-color: #d62728;
       }
+
       .comparison-title {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 700;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         color: #0d3b5e;
       }
+
+      @media (min-width: 768px) {
+        .comparison-title {
+          font-size: 1.4rem;
+          margin-bottom: 15px;
+          gap: 10px;
+        }
+      }
+
       .calculation-detail {
         background: white;
-        border-radius: 15px;
-        padding: 15px;
-        margin: 10px 0;
+        border-radius: 12px;
+        padding: 12px;
+        margin: 8px 0;
         border: 1px solid #cde0ee;
       }
+
+      @media (min-width: 768px) {
+        .calculation-detail {
+          border-radius: 15px;
+          padding: 15px;
+          margin: 10px 0;
+        }
+      }
+
       .math {
-        font-size: 1.1rem;
-        padding: 10px;
+        font-size: 0.9rem;
+        padding: 8px;
         background: #e8f2fa;
-        border-radius: 10px;
+        border-radius: 8px;
         overflow-x: auto;
         color: #0d3b5e;
       }
 
+      @media (min-width: 768px) {
+        .math {
+          font-size: 1.1rem;
+          padding: 10px;
+          border-radius: 10px;
+        }
+      }
+
       /* Panel Rumus Lengkap */
       .formula-panel {
-        margin-top: 25px;
+        margin-top: 20px;
         background: #0a2f4a;
-        border-radius: 25px;
-        padding: 25px;
+        border-radius: 20px;
+        padding: 18px;
         color: white;
       }
+
+      @media (min-width: 768px) {
+        .formula-panel {
+          margin-top: 25px;
+          border-radius: 25px;
+          padding: 25px;
+        }
+      }
+
       .formula-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 20px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 15px;
       }
+
+      @media (min-width: 640px) {
+        .formula-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .formula-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+      }
+
       .formula-card {
         background: #1a5f94;
-        border-radius: 15px;
-        padding: 15px;
+        border-radius: 12px;
+        padding: 12px;
         border: 1px solid #7aa6c7;
       }
+
+      @media (min-width: 768px) {
+        .formula-card {
+          border-radius: 15px;
+          padding: 15px;
+        }
+      }
+
       .formula-title {
         color: #f4b836;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
       }
+
+      @media (min-width: 768px) {
+        .formula-title {
+          margin-bottom: 10px;
+          font-size: 1rem;
+        }
+      }
+
       .formula-math {
         background: #0d3b5e;
         color: white;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 8px;
+        border-radius: 8px;
         font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+      }
+
+      @media (min-width: 768px) {
+        .formula-math {
+          padding: 10px;
+          border-radius: 10px;
+          font-size: 0.95rem;
+        }
       }
 
       .footnote {
         background: #fef6e5;
-        border-radius: 24px;
-        padding: 16px 24px;
-        margin-top: 25px;
-        border-left: 8px solid #f3b13e;
+        border-radius: 20px;
+        padding: 14px 16px;
+        margin-top: 20px;
+        border-left: 6px solid #f3b13e;
+        font-size: 0.9rem;
+      }
+
+      @media (min-width: 768px) {
+        .footnote {
+          border-radius: 24px;
+          padding: 16px 24px;
+          margin-top: 25px;
+          border-left: 8px solid #f3b13e;
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
@@ -487,51 +944,44 @@
       <h1>
         <i class="fas fa-graduation-cap" style="color: #f4b836"></i>
         Memahami Pole Slip Protection (ANSI 78)
-        <span class="badge">Memory Blinder Logic</span>
+        <span class="badge">Memory Blinder</span>
       </h1>
 
       <!-- ========== BOX PENJELASAN DENGAN ANALOGI ========== -->
       <div class="explanation-box">
         <div class="explanation-title">
           <i class="fas fa-lightbulb"></i>
-          Apa itu Pole Slip (Kehilangan Sinkronisasi)?
+          Apa itu Pole Slip?
         </div>
-        <p style="font-size: 1.1rem; margin-bottom: 25px; color: #1a4c6e">
+        <p style="color: #1a4c6e">
           Pole Slip adalah kondisi ketika generator kehilangan sinkronisasi
-          dengan sistem, di mana rotor berputar lebih cepat atau lebih lambat
-          dari medan putar stator. Ini menyebabkan osilasi daya yang ekstrem dan
-          dapat merusak generator. Proteksi ANSI 78 mendeteksi ini melalui
-          trajectory impedansi yang membentuk "lensa" karakteristik.
+          dengan sistem, menyebabkan osilasi daya ekstrem. Proteksi ANSI 78
+          mendeteksi ini melalui trajectory impedansi.
         </p>
 
         <div class="analogy-grid">
           <div class="analogy-item">
             <i class="fas fa-people-arrows"></i>
-            <h3>👥 Analogi Tari Berpasangan</h3>
+            <h3>👥 Analogi Tari</h3>
             <p>
               Generator dan sistem seperti pasangan penari. Pole slip adalah
-              saat salah satu penari kehilangan irama dan mulai bergerak
-              berlawanan arah. Proteksi seperti wasit yang mencatat setiap kali
-              mereka saling membelakangi (blinder crossing).
+              saat salah satu penari kehilangan irama.
             </p>
           </div>
           <div class="analogy-item">
             <i class="fas fa-child"></i>
             <h3>🧒 Analogi Ayunan</h3>
             <p>
-              Seperti anak di ayunan. Normalnya ayunan bergerak harmonis. Saat
-              pole slip, ayunan berputar 360° melewati atas - ini berbahaya!
-              Blinder seperti penanda batas aman ayunan.
+              Seperti anak di ayunan. Normalnya harmonis, pole slip seperti
+              ayunan berputar 360° - berbahaya!
             </p>
           </div>
           <div class="analogy-item">
             <i class="fas fa-dragon"></i>
-            <h3>🐉 Analogi Naga dan Cincin</h3>
+            <h3>🐉 Analogi Naga</h3>
             <p>
-              Bayangkan naga mengejar ekornya sendiri. Saat sinkron, ia bergerak
-              dalam lingkaran sempurna. Pole slip adalah saat ia mulai berputar
-              liar. Blinder seperti cincin api yang tidak boleh dilewati dua
-              kali.
+              Naga mengejar ekor. Pole slip saat mulai berputar liar. Blinder
+              seperti cincin api.
             </p>
           </div>
         </div>
@@ -539,21 +989,17 @@
         <div
           style="
             background: white;
-            border-radius: 20px;
-            padding: 15px;
-            margin-top: 20px;
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 15px;
           "
         >
-          <h4 style="color: #134872">
-            <i class="fas fa-key"></i> Konsep MEMORY Blinder:
+          <h4 style="color: #134872; margin: 0 0 8px 0; font-size: 1rem">
+            <i class="fas fa-key"></i> Konsep MEMORY:
           </h4>
-          <p style="margin-bottom: 0">
-            <strong>Logika yang benar:</strong> Begitu impedansi melewati
-            blinder kiri atau kanan, kejadian itu
-            <span style="color: #d62728; font-weight: 700">DIINGAT</span> (tidak
-            hilang). Trip terjadi jika <strong>KEDUA</strong> blinder (kiri DAN
-            kanan) pernah dilewati, menunjukkan satu siklus pole slip yang
-            lengkap.
+          <p style="margin-bottom: 0; font-size: 0.9rem">
+            Begitu melewati blinder, kejadian <strong>DIINGAT</strong> (tidak
+            hilang). Trip jika <strong>KEDUA</strong> blinder pernah dilewati.
           </p>
         </div>
       </div>
@@ -568,65 +1014,54 @@
           </div>
 
           <div class="formula-box">
-            <h3 style="color: #1a5f94">1. Impedansi Base</h3>
-            <div class="formula">\(Z_{base} = \frac{V^2}{S}\)</div>
+            <h3 style="color: #1a5f94; margin: 0 0 8px 0; font-size: 1rem">
+              1. Impedansi Base
+            </h3>
+            <div class="formula">\(Z_{base} = V^2 / S\)</div>
             <div class="calc-step">
-              <span>V = 16 kV, S = 210 MVA</span>
-              <span class="value-highlight" id="calc_zbase">1.219 Ω</span>
+              <span>V=16kV, S=210MVA</span>
+              <span class="value-highlight" id="calc_zbase">1.219Ω</span>
             </div>
           </div>
 
           <div class="formula-box">
-            <h3 style="color: #1a5f94">2. Impedansi Total ke Infinite Bus</h3>
+            <h3 style="color: #1a5f94; margin: 0 0 8px 0; font-size: 1rem">
+              2. Total Impedansi
+            </h3>
             <div class="formula">
-              \(X_{total} = (X_d' + X_{trafo} + X_{line}) \times Z_{base}\)
+              \(X_{total} = (X_d' + X_t + X_{line}) × Z_{base}\)
             </div>
             <div class="calc-step">
-              <span>X<sub>d</sub>' = 0.25 pu</span>
-              <span>X<sub>trafo</sub> = 0.15 pu</span>
-              <span>X<sub>line</sub> = 0.40 pu</span>
-            </div>
-            <div class="calc-step">
-              <span>X<sub>total</sub> = (0.25+0.15+0.40) × 1.219</span>
-              <span class="value-highlight" id="calc_xtotal">0.975 Ω</span>
+              <span>X'd=0.25, Xt=0.15, Xline=0.40 pu</span>
+              <span class="value-highlight" id="calc_xtotal">0.975Ω</span>
             </div>
           </div>
 
           <div class="formula-box">
-            <h3 style="color: #1a5f94">3. Impedansi Saat Pole Slip</h3>
-            <div class="formula">
-              \(Z(\delta) = \frac{X_{total}}{2}(1 - e^{-j2\delta})\)
-            </div>
-            <div class="formula">\(R = \frac{X_{total}}{2} \sin(2\delta)\)</div>
-            <div class="formula">
-              \(X = \frac{X_{total}}{2} (1 - \cos(2\delta))\)
+            <h3 style="color: #1a5f94; margin: 0 0 8px 0; font-size: 1rem">
+              3. Rumus Pole Slip
+            </h3>
+            <div class="formula">R = (Xtotal/2) sin(2δ)</div>
+            <div class="formula">X = (Xtotal/2)(1 - cos(2δ))</div>
+          </div>
+
+          <div class="formula-box">
+            <h3 style="color: #1a5f94; margin: 0 0 8px 0; font-size: 1rem">
+              4. Konversi Sekunder
+            </h3>
+            <div class="formula">Zsek = Zprim × (CT/VT)</div>
+            <div class="calc-step">
+              <span>CT=2000, VT=120, k=16.67</span>
+              <span class="value-highlight" id="calc_xtotal_sek">16.25Ω</span>
             </div>
           </div>
 
           <div class="formula-box">
-            <h3 style="color: #1a5f94">4. Setting Relay (Sekunder)</h3>
-            <div class="formula">
-              \(Z_{sek} = Z_{primer} \times \frac{CT_{rasio}}{VT_{rasio}}\)
-            </div>
-            <div class="calc-step">
-              <span>CT = 2000:5, VT = 120:1</span>
-              <span>k = 2000/120 = 16.67</span>
-            </div>
-            <div class="calc-step">
-              <span>X<sub>total sek</sub> = 0.975 × 16.67</span>
-              <span class="value-highlight" id="calc_xtotal_sek">16.25 Ω</span>
-            </div>
-          </div>
-
-          <div class="formula-box">
-            <h3 style="color: #1a5f94">5. Logika Trip (IEEE C37.102)</h3>
-            <div class="formula">
-              Trip jika: <strong>KEDUA blinder pernah terlewati</strong>
-            </div>
-            <div class="formula">
-              Memory L = pernah R < -3.5<br />
-              Memory R = pernah R > 3.5
-            </div>
+            <h3 style="color: #1a5f94; margin: 0 0 8px 0; font-size: 1rem">
+              5. Logika Trip
+            </h3>
+            <div class="formula">Trip jika KEDUA blinder pernah dilewati</div>
+            <div class="formula">Blinder: R < -3.5 atau R > 3.5 Ω</div>
           </div>
         </div>
 
@@ -634,10 +1069,10 @@
         <div class="panel-center">
           <div class="mode-selector">
             <button class="mode-btn normal active" id="modeNormal">
-              <i class="fas fa-check-circle"></i> Mode Normal
+              <i class="fas fa-check-circle"></i> Normal
             </button>
             <button class="mode-btn trip" id="modeTrip">
-              <i class="fas fa-exclamation-triangle"></i> Mode Pole Slip
+              <i class="fas fa-exclamation-triangle"></i> Pole Slip
             </button>
           </div>
 
@@ -648,23 +1083,23 @@
           <div class="legend-row">
             <span
               ><span class="legend-color" style="background: #4c51bf"></span>
-              Lensa Proteksi</span
+              Lensa</span
             >
             <span
               ><span class="legend-color" style="background: #ff9900"></span>
-              Blinder (Memory)</span
+              Blinder</span
             >
             <span
               ><span class="legend-color" style="background: #48bb78"></span>
-              Trajectory Normal</span
+              Normal</span
             >
             <span
               ><span class="legend-color" style="background: #f56565"></span>
-              Trajectory Pole Slip</span
+              Slip</span
             >
             <span
-              ><span class="legend-color" style="background: #d62728"></span> Z
-              Saat Ini</span
+              ><span class="legend-color" style="background: #d62728"></span>
+              Z</span
             >
           </div>
         </div>
@@ -675,15 +1110,14 @@
           <div class="memory-section">
             <div class="memory-title">
               <i class="fas fa-brain" style="color: #f4b836"></i> MEMORY BLINDER
-              (Tidak Hilang)
             </div>
             <div class="memory-circles">
               <div class="memory-circle" id="memoryLeft">
-                <span style="font-size: 1.5rem">L</span>
+                <span>L</span>
                 <span id="leftMemText">Belum</span>
               </div>
               <div class="memory-circle" id="memoryRight">
-                <span style="font-size: 1.5rem">R</span>
+                <span>R</span>
                 <span id="rightMemText">Belum</span>
               </div>
             </div>
@@ -691,12 +1125,12 @@
               style="
                 text-align: center;
                 background: white;
-                padding: 10px;
-                border-radius: 15px;
+                padding: 8px;
+                border-radius: 12px;
                 border: 1px solid #cde0ee;
               "
             >
-              <div id="memoryStatus" style="color: #0d3b5e">
+              <div id="memoryStatus" style="color: #0d3b5e; font-size: 0.9rem">
                 ⬜⬜ Kedua blinder belum
               </div>
             </div>
@@ -705,28 +1139,22 @@
           <div class="status-cards">
             <div class="status-card">
               <i class="fas fa-angle-double-right" style="color: #1a5f94"></i>
-              <div style="color: #0d3b5e">Sudut δ</div>
+              <div style="color: #0d3b5e; font-size: 0.9rem">Sudut δ</div>
               <div class="status-value" id="angleDisplay">30°</div>
             </div>
             <div class="status-card">
               <i class="fas fa-bolt" style="color: #1a5f94"></i>
-              <div style="color: #0d3b5e">Impedansi</div>
-              <div class="status-value" id="zDisplay">2.87 Ω</div>
+              <div style="color: #0d3b5e; font-size: 0.9rem">Impedansi</div>
+              <div class="status-value" id="zDisplay">2.87Ω</div>
             </div>
           </div>
 
           <div class="slider-container">
             <div class="slider-label">
+              <span>Sudut Rotor δ</span>
               <span
-                ><i class="fas fa-angle-double-right"></i> Sudut Rotor δ</span
-              >
-              <span
+                style="background: white; padding: 2px 8px; border-radius: 12px"
                 id="sliderValue"
-                style="
-                  background: white;
-                  padding: 4px 12px;
-                  border-radius: 20px;
-                "
                 >30°</span
               >
             </div>
@@ -744,15 +1172,15 @@
           <div
             style="
               background: white;
-              border-radius: 15px;
-              padding: 15px;
-              margin: 15px 0;
+              border-radius: 12px;
+              padding: 12px;
+              margin: 12px 0;
               text-align: center;
               border: 1px solid #cde0ee;
             "
           >
             <div
-              style="font-size: 1.5rem; font-weight: 700; color: #0d3b5e"
+              style="font-size: 1.3rem; font-weight: 700; color: #0d3b5e"
               id="tripMainStatus"
             >
               ⚪ AMAN
@@ -760,9 +1188,10 @@
             <div
               style="
                 display: flex;
-                gap: 10px;
+                gap: 8px;
                 justify-content: center;
-                margin-top: 10px;
+                margin-top: 8px;
+                flex-wrap: wrap;
               "
             >
               <span class="value-highlight" id="tripCounter">Siklus: 0</span>
@@ -773,7 +1202,7 @@
           </div>
 
           <div class="event-log" id="eventLog">
-            [System] Logika MEMORY aktif - blinder tidak hilang<br />
+            [System] Logika MEMORY aktif<br />
             [Ready] Menunggu crossing...
           </div>
 
@@ -782,7 +1211,7 @@
               <i class="fas fa-play"></i> Normal
             </button>
             <button class="btn-trip" id="playTrip">
-              <i class="fas fa-skull"></i> Pole Slip
+              <i class="fas fa-skull"></i> Slip
             </button>
             <button class="btn-reset" id="resetBtn">
               <i class="fas fa-undo"></i>
@@ -797,38 +1226,28 @@
         <div class="comparison-card normal">
           <div class="comparison-title">
             <i class="fas fa-check-circle" style="color: #2ca02c"></i>
-            Analisis Kondisi Normal
+            Kondisi Normal
           </div>
 
           <div class="calculation-detail">
-            <h4 style="color: #0d3b5e">📊 Data Operasi Normal</h4>
             <div class="calc-step">
-              <span>Sudut rotor (δ):</span>
+              <span>Sudut δ:</span>
               <span id="normal_delta">30°</span>
             </div>
             <div class="calc-step">
-              <span>Impedansi R:</span>
-              <span id="normal_r">0.47 Ω</span>
+              <span>R:</span>
+              <span id="normal_r">0.47Ω</span>
             </div>
             <div class="calc-step">
-              <span>Impedansi X:</span>
-              <span id="normal_x">2.83 Ω</span>
-            </div>
-            <div class="calc-step">
-              <span>|Z|:</span>
-              <span id="normal_z">2.87 Ω</span>
+              <span>X:</span>
+              <span id="normal_x">2.83Ω</span>
             </div>
           </div>
 
           <div class="math">
-            <strong>Perhitungan:</strong><br />
-            R = (0.975/2) × sin(2×30°) = 0.4875 × sin(60°) = 0.422 Ω primer<br />
-            X = (0.975/2) × (1 - cos(60°)) = 0.4875 × (1 - 0.5) = 0.244 Ω
-            primer<br />
-            Nilai sekunder: ×16.67 = R=7.03, X=4.07 Ω<br />
-            <span style="color: #2ca02c; font-weight: 600"
-              >✓ Tidak melewati blinder</span
-            >
+            <strong>R</strong> = (0.975/2) sin(60°) = 0.422Ω primer<br />
+            <strong>X</strong> = (0.975/2)(1-cos60°) = 0.244Ω primer<br />
+            <span style="color: #2ca02c">✓ Tidak melewati blinder</span>
           </div>
         </div>
 
@@ -836,86 +1255,63 @@
         <div class="comparison-card trip">
           <div class="comparison-title">
             <i class="fas fa-exclamation-triangle" style="color: #d62728"></i>
-            Analisis Kondisi Pole Slip
+            Kondisi Pole Slip
           </div>
 
           <div class="calculation-detail">
-            <h4 style="color: #0d3b5e">⚠️ Data Saat Pole Slip</h4>
             <div class="calc-step">
-              <span>Sudut rotor (δ):</span>
+              <span>Sudut δ:</span>
               <span id="trip_delta">120°</span>
             </div>
             <div class="calc-step">
-              <span>Impedansi R:</span>
-              <span id="trip_r">-4.22 Ω</span>
+              <span>R:</span>
+              <span id="trip_r">-4.22Ω</span>
             </div>
             <div class="calc-step">
-              <span>Impedansi X:</span>
-              <span id="trip_x">12.66 Ω</span>
-            </div>
-            <div class="calc-step">
-              <span>|Z|:</span>
-              <span id="trip_z">13.35 Ω</span>
+              <span>X:</span>
+              <span id="trip_x">12.66Ω</span>
             </div>
           </div>
 
           <div class="math">
-            <strong>Perhitungan:</strong><br />
-            R = (0.975/2) × sin(2×120°) = 0.4875 × sin(240°) = -0.422 Ω
-            primer<br />
-            X = (0.975/2) × (1 - cos(240°)) = 0.4875 × (1 + 0.5) = 0.731 Ω
-            primer<br />
-            Nilai sekunder: ×16.67 = R=-7.03, X=12.19 Ω<br />
-            <span style="color: #d62728; font-weight: 600"
-              >✗ Melewati blinder kiri! (R < -3.5) - TERCATAT</span
-            >
+            <strong>R</strong> = 0.4875 × sin(240°) = -0.422Ω primer<br />
+            <strong>X</strong> = 0.4875 × (1-cos240°) = 0.731Ω primer<br />
+            <span style="color: #d62728">✗ Melewati blinder kiri!</span>
           </div>
         </div>
       </div>
 
       <!-- Panel Rumus Lengkap -->
       <div class="formula-panel">
-        <h3 style="color: #f4b836">
-          <i class="fas fa-square-root-alt"></i> Kumpulan Rumus Lengkap Pole
-          Slip Protection
+        <h3 style="color: #f4b836; margin: 0 0 10px 0; font-size: 1.2rem">
+          <i class="fas fa-square-root-alt"></i> Rumus Lengkap
         </h3>
         <div class="formula-grid">
           <div class="formula-card">
-            <div class="formula-title">1. Impedansi Base</div>
+            <div class="formula-title">Zbase</div>
+            <div class="formula-math">Zbase = V² / S</div>
+          </div>
+          <div class="formula-card">
+            <div class="formula-title">Xtotal</div>
+            <div class="formula-math">Xtotal = (X'd+Xt+Xline)×Zbase</div>
+          </div>
+          <div class="formula-card">
+            <div class="formula-title">Trajectory</div>
+            <div class="formula-math">Z(δ) = j(Xtotal/2)(1-e⁻ʲ²ᵟ)</div>
+          </div>
+          <div class="formula-card">
+            <div class="formula-title">R & X</div>
             <div class="formula-math">
-              \(Z_{base} = \frac{V_{LL}^2}{S_{3\phi}}\)
+              R = (Xtotal/2) sin(2δ)<br />X = (Xtotal/2)(1-cos(2δ))
             </div>
           </div>
           <div class="formula-card">
-            <div class="formula-title">2. Total Impedansi</div>
-            <div class="formula-math">
-              \(X_{total} = (X_d' + X_{trafo} + X_{line}) \times Z_{base}\)
-            </div>
+            <div class="formula-title">Konversi</div>
+            <div class="formula-math">Zsek = Zprim × CT/VT</div>
           </div>
           <div class="formula-card">
-            <div class="formula-title">3. Trajectory Pole Slip</div>
-            <div class="formula-math">
-              \(Z(\delta) = j\frac{X_{total}}{2}(1 - e^{-j2\delta})\)
-            </div>
-          </div>
-          <div class="formula-card">
-            <div class="formula-title">4. Komponen R dan X</div>
-            <div class="formula-math">
-              \(R = \frac{X_{total}}{2}\sin(2\delta)\)<br />\(X =
-              \frac{X_{total}}{2}(1-\cos(2\delta))\)
-            </div>
-          </div>
-          <div class="formula-card">
-            <div class="formula-title">5. Konversi ke Sekunder</div>
-            <div class="formula-math">
-              \(Z_{sek} = Z_{primer} \times \frac{CT_{rasio}}{VT_{rasio}}\)
-            </div>
-          </div>
-          <div class="formula-card">
-            <div class="formula-title">6. Logika Memory</div>
-            <div class="formula-math">
-              Trip jika kedua blinder<br />pernah terlewati
-            </div>
+            <div class="formula-title">Logika</div>
+            <div class="formula-math">Trip jika kedua blinder terlewati</div>
           </div>
         </div>
       </div>
@@ -923,14 +1319,10 @@
       <div class="footnote">
         <i
           class="fas fa-lightbulb"
-          style="margin-right: 12px; color: #f4b836"
+          style="margin-right: 8px; color: #f4b836"
         ></i>
-        <strong>Bagaimana membaca grafik:</strong> Lensa biru adalah daerah
-        operasi normal. Blinder oranye adalah batas yang harus dilewati untuk
-        deteksi pole slip.
-        <strong style="color: #d62728">MEMORY:</strong> Setiap kali melewati
-        blinder kiri atau kanan, kejadian itu diingat. Trip terjadi jika KEDUA
-        blinder pernah dilewati, menandakan satu siklus pole slip yang lengkap.
+        <strong>Tips:</strong> Lensa biru = daerah normal. Blinder oranye =
+        batas deteksi. Trip jika KEDUA blinder pernah dilewati.
       </div>
     </div>
 
@@ -960,39 +1352,27 @@
 
         // Update tampilan perhitungan
         document.getElementById("calc_zbase").innerText =
-          zBase.toFixed(3) + " Ω";
+          zBase.toFixed(3) + "Ω";
         document.getElementById("calc_xtotal").innerText =
-          xtotal_prim.toFixed(3) + " Ω";
+          xtotal_prim.toFixed(3) + "Ω";
         document.getElementById("calc_xtotal_sek").innerText =
-          xtotal_sek.toFixed(2) + " Ω";
+          xtotal_sek.toFixed(2) + "Ω";
 
         // ==================== FUNGSI PERHITUNGAN ====================
         function calculateImpedance(angle) {
           const deltaRad = (angle * Math.PI) / 180;
           const halfX = xtotal_prim / 2;
 
-          // Rumus: R = (Xtotal/2) * sin(2δ)
-          //        X = (Xtotal/2) * (1 - cos(2δ))
           const R_prim = halfX * Math.sin(2 * deltaRad);
           const X_prim = halfX * (1 - Math.cos(2 * deltaRad));
 
-          // Konversi ke sekunder
           const R = R_prim * k;
           const X = X_prim * k;
 
           return { R, X, R_prim, X_prim };
         }
 
-        // Cek apakah di dalam lensa (belah ketupat)
-        function isInsideLens(R, X) {
-          const a = settings.lensWidth / 2; // half-width
-          const b = xtotal_sek / 2; // half-height
-          const r_norm = Math.abs(R - 0);
-          const x_norm = Math.abs(X - centerX);
-          return r_norm / a + x_norm / b <= 1;
-        }
-
-        // ==================== STATE MEMORY (YANG BENAR) ====================
+        // ==================== STATE MEMORY ====================
         let memoryState = {
           leftRemembered: false,
           rightRemembered: false,
@@ -1005,7 +1385,6 @@
         const ctx = document.getElementById("mhoChart").getContext("2d");
 
         function initChart() {
-          // Generate lens points (belah ketupat)
           const a = settings.lensWidth / 2;
           const b = xtotal_sek / 2;
           const lensPoints = [
@@ -1016,7 +1395,6 @@
             { x: 0, y: centerX + b },
           ];
 
-          // Generate trajectories
           const normalPoints = [];
           const tripPoints = [];
           for (let angle = 0; angle <= 360; angle += 5) {
@@ -1035,7 +1413,7 @@
                   label: "Lensa Proteksi",
                   data: lensPoints,
                   borderColor: "#4c51bf",
-                  borderWidth: 3,
+                  borderWidth: window.innerWidth < 768 ? 2 : 3,
                   pointRadius: 0,
                   showLine: true,
                   fill: true,
@@ -1048,10 +1426,10 @@
                     { x: settings.blinderLeft, y: 40 },
                   ],
                   borderColor: "#ff9900",
-                  borderWidth: 2,
+                  borderWidth: window.innerWidth < 768 ? 1.5 : 2,
                   pointRadius: 0,
                   showLine: true,
-                  borderDash: [6, 6],
+                  borderDash: [4, 4],
                 },
                 {
                   label: "Blinder Kanan",
@@ -1060,16 +1438,16 @@
                     { x: settings.blinderRight, y: 40 },
                   ],
                   borderColor: "#ff9900",
-                  borderWidth: 2,
+                  borderWidth: window.innerWidth < 768 ? 1.5 : 2,
                   pointRadius: 0,
                   showLine: true,
-                  borderDash: [6, 6],
+                  borderDash: [4, 4],
                 },
                 {
                   label: "Trajectory Normal",
                   data: normalPoints,
                   borderColor: "#48bb78",
-                  borderWidth: 2,
+                  borderWidth: window.innerWidth < 768 ? 1.5 : 2,
                   pointRadius: 0,
                   showLine: true,
                   hidden: false,
@@ -1078,7 +1456,7 @@
                   label: "Trajectory Pole Slip",
                   data: tripPoints,
                   borderColor: "#f56565",
-                  borderWidth: 2,
+                  borderWidth: window.innerWidth < 768 ? 1.5 : 2,
                   pointRadius: 0,
                   showLine: true,
                   hidden: true,
@@ -1088,7 +1466,7 @@
                   data: [{ x: 0, y: 0 }],
                   borderColor: "#d62728",
                   backgroundColor: "#d62728",
-                  pointRadius: 8,
+                  pointRadius: window.innerWidth < 768 ? 5 : 8,
                   pointStyle: "circle",
                 },
               ],
@@ -1096,7 +1474,7 @@
             options: {
               responsive: true,
               maintainAspectRatio: true,
-              aspectRatio: 1.4,
+              aspectRatio: window.innerWidth < 768 ? 1 : 1.4,
               animation: false,
               plugins: {
                 tooltip: { enabled: false },
@@ -1104,60 +1482,58 @@
               },
               scales: {
                 x: {
-                  title: { display: true, text: "R (Ohm sekunder)" },
+                  title: {
+                    display: true,
+                    text: "R (Ω)",
+                    font: { size: window.innerWidth < 768 ? 9 : 12 },
+                  },
                   min: -15,
                   max: 15,
                   grid: { color: "#e2e8f0" },
+                  ticks: { font: { size: window.innerWidth < 768 ? 8 : 10 } },
                 },
                 y: {
-                  title: { display: true, text: "X (Ohm sekunder)" },
+                  title: {
+                    display: true,
+                    text: "X (Ω)",
+                    font: { size: window.innerWidth < 768 ? 9 : 12 },
+                  },
                   min: -5,
                   max: 35,
                   grid: { color: "#e2e8f0" },
+                  ticks: { font: { size: window.innerWidth < 768 ? 8 : 10 } },
                 },
               },
             },
           });
         }
 
-        // ==================== UPDATE DISPLAY DENGAN MEMORY ====================
+        // ==================== UPDATE DISPLAY ====================
         function updateDisplay(angle) {
           const { R, X } = calculateImpedance(angle);
-          const inside = isInsideLens(R, X);
 
-          // Update nilai display
           document.getElementById("angleDisplay").innerText = angle + "°";
           document.getElementById("zDisplay").innerText =
-            Math.sqrt(R * R + X * X).toFixed(2) + " Ω";
+            Math.sqrt(R * R + X * X).toFixed(2) + "Ω";
           document.getElementById("sliderValue").innerText = angle + "°";
           document.getElementById("angleSlider").value = angle;
 
-          // Update normal panel
           document.getElementById("normal_delta").innerText = angle + "°";
-          document.getElementById("normal_r").innerText = R.toFixed(2) + " Ω";
-          document.getElementById("normal_x").innerText = X.toFixed(2) + " Ω";
-          document.getElementById("normal_z").innerText =
-            Math.sqrt(R * R + X * X).toFixed(2) + " Ω";
+          document.getElementById("normal_r").innerText = R.toFixed(2) + "Ω";
+          document.getElementById("normal_x").innerText = X.toFixed(2) + "Ω";
 
-          // CEK BLINDER CROSSING
           const leftNow = R < settings.blinderLeft;
           const rightNow = R > settings.blinderRight;
 
-          // LOGIKA MEMORY: Begitu terlewati, jadi true dan tetap true
           if (leftNow && !memoryState.leftRemembered) {
             memoryState.leftRemembered = true;
-            addEventLog(
-              `📌 Blinder KIRI TERCATAT di memory pada δ=${angle}° (R=${R.toFixed(2)})`,
-            );
+            addEventLog(`📌 Blinder KIRI tercatat di δ=${angle}°`);
           }
           if (rightNow && !memoryState.rightRemembered) {
             memoryState.rightRemembered = true;
-            addEventLog(
-              `📌 Blinder KANAN TERCATAT di memory pada δ=${angle}° (R=${R.toFixed(2)})`,
-            );
+            addEventLog(`📌 Blinder KANAN tercatat di δ=${angle}°`);
           }
 
-          // TRIP LOGIC: Trip jika KEDUA blinder sudah tercatat di memory
           if (
             memoryState.leftRemembered &&
             memoryState.rightRemembered &&
@@ -1165,12 +1541,9 @@
           ) {
             memoryState.tripped = true;
             memoryState.slipCount++;
-            addEventLog(
-              `🚨🚨🚨 TRIP! Kedua blinder sudah terlewati! (Siklus #${memoryState.slipCount})`,
-            );
+            addEventLog(`🚨 TRIP! Siklus #${memoryState.slipCount}`);
           }
 
-          // Update tampilan memory circles
           document.getElementById("memoryLeft").className =
             memoryState.leftRemembered
               ? memoryState.tripped
@@ -1189,7 +1562,6 @@
           document.getElementById("rightMemText").innerText =
             memoryState.rightRemembered ? "Sudah" : "Belum";
 
-          // Status memory text
           let memStatus = "";
           if (memoryState.leftRemembered && memoryState.rightRemembered)
             memStatus = "✅✅ KEDUA SUDAH!";
@@ -1198,19 +1570,13 @@
           else memStatus = "⬜⬜ Kedua blinder belum";
           document.getElementById("memoryStatus").innerText = memStatus;
 
-          // Update trip status
           document.getElementById("tripMainStatus").innerHTML =
             memoryState.tripped ? "🔴 TRIP!" : "⚪ AMAN";
           document.getElementById("tripCounter").innerHTML =
             `Siklus: ${memoryState.slipCount}`;
-
-          const blinderCount =
-            (memoryState.leftRemembered ? 1 : 0) +
-            (memoryState.rightRemembered ? 1 : 0);
           document.getElementById("blinderCounter").innerHTML =
-            `Blinder: ${blinderCount}/2`;
+            `Blinder: ${(memoryState.leftRemembered ? 1 : 0) + (memoryState.rightRemembered ? 1 : 0)}/2`;
 
-          // Update chart point
           chart.data.datasets[5].data = [{ x: R, y: X }];
           chart.update("none");
         }
@@ -1221,7 +1587,7 @@
           div.textContent = "[" + new Date().toLocaleTimeString() + "] " + msg;
           log.appendChild(div);
           log.scrollTop = log.scrollHeight;
-          while (log.children.length > 8) {
+          while (log.children.length > 6) {
             log.removeChild(log.children[0]);
           }
         }
@@ -1234,7 +1600,7 @@
             slipCount: 0,
           };
           updateDisplay(30);
-          addEventLog("🔄 System reset - Memory dikosongkan");
+          addEventLog("🔄 System reset");
         }
 
         // ==================== ANIMASI ====================
@@ -1243,7 +1609,6 @@
         function startNormalSimulation() {
           if (animInterval) clearInterval(animInterval);
           resetMemory();
-
           chart.data.datasets[3].hidden = false;
           chart.data.datasets[4].hidden = true;
           chart.update();
@@ -1259,7 +1624,6 @@
         function startTripSimulation() {
           if (animInterval) clearInterval(animInterval);
           resetMemory();
-
           chart.data.datasets[3].hidden = true;
           chart.data.datasets[4].hidden = false;
           chart.update();
@@ -1270,12 +1634,11 @@
             document.getElementById("angleSlider").value = angle;
             updateDisplay(angle);
 
-            // Reset memory setiap siklus baru (kembali ke 0°)
             if (angle === 0) {
               memoryState.leftRemembered = false;
               memoryState.rightRemembered = false;
               memoryState.tripped = false;
-              addEventLog("--- Siklus baru, memory direset ---");
+              addEventLog("--- Siklus baru ---");
             }
           }, 70);
         }
@@ -1285,10 +1648,8 @@
             clearInterval(animInterval);
             animInterval = null;
           }
-
           chart.data.datasets[3].hidden = false;
           chart.data.datasets[4].hidden = true;
-
           document.getElementById("angleSlider").value = 30;
           document.getElementById("modeNormal").click();
           resetMemory();
@@ -1332,23 +1693,46 @@
           .getElementById("resetBtn")
           .addEventListener("click", resetSimulation);
 
+        // Handle window resize
+        window.addEventListener("resize", () => {
+          if (chart) {
+            chart.options.aspectRatio = window.innerWidth < 768 ? 1 : 1.4;
+            chart.options.scales.x.title.font.size =
+              window.innerWidth < 768 ? 9 : 12;
+            chart.options.scales.y.title.font.size =
+              window.innerWidth < 768 ? 9 : 12;
+            chart.options.scales.x.ticks.font.size =
+              window.innerWidth < 768 ? 8 : 10;
+            chart.options.scales.y.ticks.font.size =
+              window.innerWidth < 768 ? 8 : 10;
+            chart.data.datasets[0].borderWidth =
+              window.innerWidth < 768 ? 2 : 3;
+            chart.data.datasets[1].borderWidth =
+              window.innerWidth < 768 ? 1.5 : 2;
+            chart.data.datasets[2].borderWidth =
+              window.innerWidth < 768 ? 1.5 : 2;
+            chart.data.datasets[3].borderWidth =
+              window.innerWidth < 768 ? 1.5 : 2;
+            chart.data.datasets[4].borderWidth =
+              window.innerWidth < 768 ? 1.5 : 2;
+            chart.data.datasets[5].pointRadius =
+              window.innerWidth < 768 ? 5 : 8;
+            chart.update();
+          }
+        });
+
         // ==================== INITIALIZE ====================
         window.addEventListener("load", () => {
           initChart();
           updateDisplay(30);
 
-          // Set trip display values
           const tripAngle = 120;
           const { R, X } = calculateImpedance(tripAngle);
           document.getElementById("trip_delta").innerText = tripAngle + "°";
-          document.getElementById("trip_r").innerText = R.toFixed(2) + " Ω";
-          document.getElementById("trip_x").innerText = X.toFixed(2) + " Ω";
-          document.getElementById("trip_z").innerText =
-            Math.sqrt(R * R + X * X).toFixed(2) + " Ω";
+          document.getElementById("trip_r").innerText = R.toFixed(2) + "Ω";
+          document.getElementById("trip_x").innerText = X.toFixed(2) + "Ω";
 
-          addEventLog(
-            "✅ Logika MEMORY aktif - blinder tidak hilang setelah dilewati",
-          );
+          addEventLog("✅ Logika MEMORY aktif");
         });
       })();
     </script>

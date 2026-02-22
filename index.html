@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generator Protection Learned</title>
+    <!-- Professional font & clean design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background-color: #f8fafc;
+        color: #0b1e33;
+        line-height: 1.5;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .dashboard {
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      /* header profesional - disesuaikan */
+      .header {
+        margin-bottom: 3rem;
+      }
+
+      .header h1 {
+        font-size: 2.2rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        background: linear-gradient(145deg, #0a2942, #1f4b77);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+      }
+
+      .header .subhead {
+        font-size: 1.1rem;
+        color: #3e5e7e;
+        font-weight: 400;
+        border-left: 4px solid #2b6c9e;
+        padding-left: 1.25rem;
+      }
+
+      .header .subhead strong {
+        font-weight: 600;
+        color: #1a4972;
+      }
+
+      /* grid profesional */
+      .protection-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .card {
+        flex: 1 1 300px;
+        max-width: 380px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow:
+          0 20px 35px -8px rgba(0, 32, 64, 0.12),
+          0 8px 18px -6px rgba(0, 32, 64, 0.05);
+        transition: all 0.25s ease;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #eef2f6;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow:
+          0 28px 40px -12px rgba(0, 50, 100, 0.2),
+          0 6px 12px -6px rgba(0, 40, 80, 0.1);
+        border-color: #d9e4ee;
+      }
+
+      .card-content {
+        padding: 2rem 1.8rem 1.8rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .ansi-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #132e48;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.25rem 1rem;
+        border-radius: 30px;
+        width: fit-content;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.3px;
+        border: 1px solid #2a5379;
+      }
+
+      .card h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+        color: #0a1f31;
+      }
+
+      .synonym {
+        color: #3c637f;
+        font-weight: 500;
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+        border-bottom: 1px dashed #cbd9e8;
+        padding-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+
+      .synonym span {
+        background: #e9f0f7;
+        padding: 0.2rem 0.7rem;
+        border-radius: 50px;
+        color: #1d4a76;
+        font-size: 0.85rem;
+      }
+
+      .description {
+        color: #254358;
+        margin-bottom: 2rem;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .tech-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: auto;
+        font-size: 0.95rem;
+        color: #2f587b;
+        font-weight: 500;
+        border-top: 1px solid #e4ecf3;
+        padding-top: 1.25rem;
+      }
+
+      .arrow-link {
+        margin-left: auto;
+        background: #eaf1f9;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1c4e7c;
+        font-size: 1.2rem;
+        transition: 0.2s;
+      }
+
+      .card:hover .arrow-link {
+        background: #1c4e7c;
+        color: white;
+        transform: translateX(4px);
+      }
+
+      /* footer kecil (profesional) */
+      .info-bar {
+        margin-top: 4rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0 0;
+        border-top: 1px solid #d8e4f0;
+        color: #3b5d7e;
+        font-size: 0.9rem;
+      }
+
+      .info-bar .functions-list {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .info-bar .functions-list span {
+        background: #e3eefb;
+        padding: 0.25rem 1rem;
+        border-radius: 30px;
+        font-weight: 500;
+        color: #113456;
+      }
+
+      /* responsif */
+      @media (max-width: 700px) {
+        body {
+          padding: 1.5rem;
+        }
+        .header h1 {
+          font-size: 1.8rem;
+        }
+        .card {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- header profesional dengan judul baru: Generator Protection Learned -->
+      <div class="header">
+        <h1>Generator Protection Learned</h1>
+        <div class="subhead">
+          <strong>Based Standard IEEE</strong> · <strong>IEC</strong>
+        </div>
+      </div>
+
+      <!-- grid dua card (masih fungsi 40 dan 78, tapi tidak disebut ANSI di header) -->
+      <div class="protection-grid">
+        <!-- Card 1: Loss Of Excitation (tetap menampilkan kode di badge, karena itu identitas fungsi) -->
+        <a
+          href="LOE.html"
+          class="card"
+          aria-label="Loss of Excitation protection detail"
+        >
+          <div class="card-content">
+            <div class="ansi-badge">ANSI 40</div>
+            <h2>Loss of Excitation</h2>
+            <div class="synonym">
+              <span>excitation failure</span>
+              <span>field loss</span>
+            </div>
+            <p class="description">
+              Mendeteksi kehilangan medan magnet pada generator. Kondisi ini
+              menyebabkan generator bekerja sebagai induksi, memicu pemanasan
+              rotor dan stator, serta dapat mengganggu stabilitas sistem.
+            </p>
+            <div class="tech-indicator">
+              <span>Impedance-based (offset mho)</span>
+              <div class="arrow-link">→</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2: Pole Slip (ANSI 78) -->
+        <a
+          href="PoleSlip.html"
+          class="card"
+          aria-label="Pole slip protection detail"
+        >
+          <div class="card-content">
+            <div class="ansi-badge">ANSI 78</div>
+            <h2>Pole Slip</h2>
+            <div class="synonym">
+              <span>out-of-step</span>
+              <span>loss of synchronism</span>
+            </div>
+            <p class="description">
+              Mengidentifikasi kehilangan sinkronisasi generator terhadap
+              jaringan. Akibat gangguan berat, mesin mengalami osilasi daya dan
+              arus lebih, berisiko merusak poros dan belitan.
+            </p>
+            <div class="tech-indicator">
+              <span>impedance trajectory / blinder</span>
+              <div class="arrow-link">→</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- informasi ringkas – hanya menampilkan fungsi yang tersedia (bisa ditambah nanti) -->
+      <div class="info-bar">
+        <div class="functions-list">
+          <span>Loss of Excitation</span>
+          <span>Pole Slip</span>
+        </div>
+        <div style="color: #43668c">⚙️ Processing Update other Function</div>
+      </div>
+    </div>
+
+    <!-- placeholder href, tanpa pesan -->
+    <script>
+      (function () {
+        const cards = document.querySelectorAll(".card");
+        for (let card of cards) {
+          card.addEventListener("click", function (e) {
+            if (this.getAttribute("href") === "#") {
+              e.preventDefault();
+              // placeholder - bisa diarahkan ke halaman detail masing-masing
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

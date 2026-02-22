@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembelajaran LOE: Analogi & Animasi Mulus</title>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Inter", "Segoe UI", sans-serif;
+      }
+      body {
+        background: #e9f0f7;
+        margin: 0;
+        padding: 24px;
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        max-width: 1800px;
+        width: 100%;
+        background: white;
+        border-radius: 40px;
+        box-shadow: 0 30px 50px rgba(0, 20, 40, 0.2);
+        padding: 32px;
+      }
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #0a2f4a;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+      .badge {
+        background: #1a5f94;
+        color: white;
+        padding: 6px 20px;
+        border-radius: 60px;
+        font-size: 0.9rem;
+        font-weight: 400;
+      }
+
+      /* ========== STYLE UNTUK BOX PENJELASAN ========== */
+      .explanation-box {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
+        border-radius: 30px;
+        padding: 25px 30px;
+        margin-bottom: 30px;
+        border: 1px solid #b8d1e6;
+        box-shadow: 0 8px 20px rgba(0, 60, 120, 0.1);
+      }
+      .explanation-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #0b3b5c;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .explanation-title i {
+        color: #f4b836;
+        font-size: 2rem;
+      }
+      .analogy-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        margin-top: 15px;
+      }
+      .analogy-item {
+        flex: 1 1 250px;
+        background: white;
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        border: 1px solid #cde0ee;
+      }
+      .analogy-item i {
+        font-size: 2rem;
+        color: #1f6da9;
+        margin-bottom: 12px;
+      }
+      .analogy-item h3 {
+        margin: 8px 0 12px 0;
+        color: #134872;
+      }
+      .analogy-item p {
+        color: #2c3e50;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .flex-main {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+      .left-col {
+        flex: 1.2;
+        min-width: 440px;
+      }
+      .right-col {
+        flex: 2;
+        min-width: 700px;
+      }
+      .card {
+        background: #f8fbfe;
+        border-radius: 28px;
+        padding: 24px;
+        border: 1px solid #cde0ee;
+        margin-bottom: 24px;
+      }
+      .card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #134872;
+        margin-bottom: 20px;
+        border-bottom: 3px solid #b6d3e8;
+        padding-bottom: 8px;
+      }
+      .param-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .param-item {
+        background: white;
+        border-radius: 20px;
+        padding: 14px 16px;
+        box-shadow: 0 4px 10px rgba(0, 30, 60, 0.03);
+        border: 1px solid #cde0ee;
+      }
+      .param-item label {
+        font-weight: 600;
+        color: #0b3d63;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .param-item input,
+      .param-item select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #acc9e3;
+        border-radius: 40px;
+        font-size: 1rem;
+        background: white;
+      }
+      .param-item input:focus,
+      .param-item select:focus {
+        border-color: #0073c8;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 115, 200, 0.1);
+      }
+      .zone1-row {
+        background: #d9eaf9;
+        border-radius: 60px;
+        padding: 15px 22px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px 0 10px;
+      }
+      .zone1-row span {
+        font-weight: 600;
+        color: #0d3b5e;
+      }
+      .zone1-row input {
+        width: 120px;
+        padding: 10px 15px;
+        border-radius: 40px;
+        border: 1px solid #7aa6c7;
+      }
+      .btn-primary {
+        background: #1a5f94;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 18px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: 0.2s;
+        margin: 18px 0 22px;
+        box-shadow: 0 10px 20px rgba(23, 85, 140, 0.3);
+      }
+      .btn-primary:hover {
+        background: #0f4370;
+        transform: scale(1.01);
+      }
+      .result-box {
+        background: #deecf7;
+        border-radius: 28px;
+        padding: 20px;
+      }
+      .result-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 18px;
+        border-bottom: 1px dashed #98bbd6;
+      }
+      .result-value {
+        background: white;
+        padding: 4px 20px;
+        border-radius: 40px;
+        font-weight: 700;
+        color: #00356b;
+        font-family: "Courier New", monospace;
+      }
+      .calculation-detail {
+        font-size: 0.85rem;
+        color: #2c5282;
+        margin-top: 4px;
+        padding-left: 8px;
+        font-family: "Courier New", monospace;
+        background: #f0f8ff;
+        border-radius: 8px;
+        padding: 4px 8px;
+      }
+      .legend-inline {
+        display: flex;
+        gap: 25px;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+      }
+      .legend-color {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        margin-right: 6px;
+      }
+      canvas {
+        width: 100%;
+        height: auto;
+        background: #ffffff;
+        border-radius: 28px;
+        border: 1px solid #b8d1e6;
+        padding: 4px;
+      }
+      .footnote {
+        background: #fef6e5;
+        border-radius: 24px;
+        padding: 16px 24px;
+        margin-top: 25px;
+        border-left: 8px solid #f3b13e;
+      }
+      .dynamic-value {
+        font-weight: 700;
+        color: #1a5f94;
+        background: #e3f0fd;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-family: "Courier New", monospace;
+      }
+      .control-panel {
+        background: #e8f2fa;
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .slider-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 15px 0;
+      }
+      .slider-label {
+        min-width: 180px;
+        font-weight: 600;
+        color: #0d3b5e;
+      }
+      input[type="range"] {
+        flex: 1;
+        height: 8px;
+        border-radius: 10px;
+        background: #d0e2f0;
+      }
+      .play-btn {
+        background: #1a5f94;
+        color: white;
+        border: none;
+        padding: 14px 35px;
+        border-radius: 60px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-right: 15px;
+        font-size: 1.1rem;
+      }
+      .play-btn:hover {
+        background: #0f4370;
+      }
+      .reset-btn {
+        background: #6c8da8;
+        color: white;
+        border: none;
+        padding: 14px 35px;
+        border-radius: 60px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1.1rem;
+      }
+      .status-badge {
+        background: #2ca02c;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 40px;
+        font-weight: 600;
+      }
+      .real-time-values {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+        background: white;
+        padding: 15px;
+        border-radius: 30px;
+      }
+      .value-box {
+        background: #e3f0fd;
+        padding: 8px 16px;
+        border-radius: 30px;
+        font-weight: 600;
+      }
+
+      /* Tombol play di atas grafik */
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .chart-controls {
+        display: flex;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <i class="fas fa-graduation-cap" style="color: #f4b836"></i>
+        Memahami Loss of Excitation (ANSI 40)
+        <span class="badge">Pembelajaran Interaktif</span>
+      </h1>
+
+      <!-- ========== BOX PENJELASAN DENGAN ANALOGI ========== -->
+      <div class="explanation-box">
+        <div class="explanation-title">
+          <i class="fas fa-lightbulb"></i>
+          Apa itu Loss of Excitation (Kehilangan Eksitasi)?
+        </div>
+        <p style="font-size: 1.1rem; margin-bottom: 25px; color: #1a4c6e">
+          Loss of Excitation adalah kondisi ketika generator sinkron kehilangan
+          arus DC pada rotor (medan magnet). Generator berubah menjadi motor
+          induksi dan menyerap daya reaktif besar dari sistem, yang dapat
+          menyebabkan overheating dan kerusakan.
+        </p>
+
+        <div class="analogy-grid">
+          <div class="analogy-item">
+            <i class="fas fa-car"></i>
+            <h3>🚗 Analogi Mobil</h3>
+            <p>
+              Generator normal seperti mobil yang melaju dengan mesin menyala.
+              Kehilangan eksitasi seperti mobil yang tiba-tiba kehabisan
+              bensin—masih melaju karena inersia, tapi tidak bisa dikendalikan
+              dan akhirnya berhenti.
+            </p>
+          </div>
+          <div class="analogy-item">
+            <i class="fas fa-magnet"></i>
+            <h3>🧲 Analogi Magnet</h3>
+            <p>
+              Generator dengan eksitasi seperti magnet kuat yang menarik besi.
+              Saat eksitasi hilang, magnet melemah, dan generator mulai
+              "menyedot" daya reaktif dari sistem seperti magnet lemah yang
+              mencuri daya dari magnet lain.
+            </p>
+          </div>
+          <div class="analogy-item">
+            <i class="fas fa-water"></i>
+            <h3>💧 Analogi Pompa Air</h3>
+            <p>
+              Generator seperti pompa air yang mendorong air ke sistem (daya
+              reaktif). Jika pompa mati (kehilangan eksitasi), air malah
+              mengalir balik dan memutar pompa terbalik, merusak mekanisme.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-main">
+        <!-- Kolom Kiri: Input dan Hasil -->
+        <div class="left-col">
+          <div class="card">
+            <div class="card-title">
+              <i class="fas fa-sliders-h"></i> Parameter Generator & Proteksi
+            </div>
+            <div class="param-grid">
+              <div class="param-item">
+                <label>Daya S (MVA)</label
+                ><input type="number" id="s_mva" step="0.1" value="210" />
+              </div>
+              <div class="param-item">
+                <label>Tegangan V (kV)</label
+                ><input type="number" id="v_kv" step="0.1" value="16.0" />
+              </div>
+              <div class="param-item">
+                <label>Xd (pu)</label
+                ><input type="number" id="xd_pu" step="0.01" value="1.8" />
+              </div>
+              <div class="param-item">
+                <label>X'd (pu)</label
+                ><input type="number" id="xd1_pu" step="0.01" value="0.25" />
+              </div>
+              <div class="param-item">
+                <label>Rasio CT</label
+                ><input type="number" id="ct_ratio" value="2000" />
+              </div>
+              <div class="param-item">
+                <label>Rasio VT</label
+                ><input type="number" id="vt_ratio" value="120" />
+              </div>
+              <div class="param-item">
+                <label>Tunda Z1 (detik)</label
+                ><input type="number" id="t1" step="0.01" value="0.3" />
+              </div>
+              <div class="param-item">
+                <label>Tunda Z2 (detik)</label
+                ><input type="number" id="t2" step="0.01" value="1.0" />
+              </div>
+            </div>
+
+            <div class="zone1-row">
+              <span
+                ><i class="fas fa-circle"></i> Diameter Zona 1 (pu dari
+                Zbase):</span
+              >
+              <input
+                type="number"
+                id="zone1_dia_pu"
+                step="0.01"
+                value="1.0"
+                min="0.1"
+              />
+              <span style="color: #2f6080">(0.8–1.0 pu)</span>
+            </div>
+
+            <button class="btn-primary" id="hitungBtn">
+              <i class="fas fa-calculator"></i> Hitung Setting & Update Grafik
+            </button>
+
+            <!-- Hasil ringkas dengan detail perhitungan -->
+            <div class="result-box" id="hasil">
+              <div class="result-row">
+                <span>Impedansi dasar (Zbase) :</span>
+                <span class="result-value" id="res_zbase">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_zbase">
+                Zbase = V² / S
+              </div>
+
+              <div class="result-row">
+                <span>Xd (Ohm primer) :</span>
+                <span class="result-value" id="res_xd_ohm">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_xd">
+                Xd (primer) = Xd(pu) × Zbase
+              </div>
+
+              <div class="result-row">
+                <span>X'd (Ohm primer) :</span>
+                <span class="result-value" id="res_xd1_ohm">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_xd1">
+                X'd (primer) = X'd(pu) × Zbase
+              </div>
+
+              <div class="result-row">
+                <span>Offset (-X'd/2) primer :</span>
+                <span class="result-value" id="res_offset_prim">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_offset_prim">
+                Offset = -X'd / 2
+              </div>
+
+              <div
+                class="result-row"
+                style="background: #c9e2f5; border-radius: 30px"
+              >
+                <span>Zona 1 diameter (primer Ω) :</span>
+                <span class="result-value" id="res_z1_dia_prim">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_z1_prim">
+                Zona 1 (primer) = diameter(pu) × Zbase
+              </div>
+
+              <div class="result-row">
+                <span>Zona 2 diameter (primer Ω) :</span>
+                <span class="result-value" id="res_z2_dia_prim">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_z2_prim">
+                Zona 2 (primer) = Xd (primer)
+              </div>
+
+              <div class="result-row">
+                <span>Faktor konversi (k) :</span>
+                <span class="result-value" id="res_k_factor">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_k">
+                k = Rasio CT / Rasio VT
+              </div>
+
+              <div class="result-row">
+                <span>Offset (relay Ω) :</span>
+                <span class="result-value" id="res_offset_relay">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_offset_relay">
+                Offset (relay) = Offset(primer) × k
+              </div>
+
+              <div class="result-row">
+                <span>Zona 1 diameter (relay Ω) :</span>
+                <span class="result-value" id="res_z1_dia_relay">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_z1_relay">
+                Zona 1 (relay) = Zona 1(primer) × k
+              </div>
+
+              <div class="result-row">
+                <span>Zona 2 diameter (relay Ω) :</span>
+                <span class="result-value" id="res_z2_dia_relay">—</span>
+              </div>
+              <div class="calculation-detail" id="calc_z2_relay">
+                Zona 2 (relay) = Zona 2(primer) × k
+              </div>
+
+              <div class="result-row">
+                <span>Tunda Z1 / Z2 :</span>
+                <span class="result-value" id="res_times">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel Kontrol Animasi & Input Operasi -->
+          <div class="control-panel">
+            <div class="card-title">
+              <i class="fas fa-play-circle"></i> Simulasi LOE Realistis (V↓ I↑)
+            </div>
+
+            <div class="param-grid" style="margin-bottom: 20px">
+              <div class="param-item">
+                <label>Arus awal I₀ (A) primer</label
+                ><input type="number" id="i_operasi" step="10" value="8000" />
+              </div>
+              <div class="param-item">
+                <label>Tegangan awal V₀ (kV) primer</label
+                ><input type="number" id="v_operasi" step="0.1" value="16.0" />
+              </div>
+              <div class="param-item">
+                <label>Faktor daya awal</label
+                ><input
+                  type="number"
+                  id="cosphi"
+                  step="0.01"
+                  value="0.85"
+                  min="0"
+                  max="1"
+                />
+              </div>
+              <div class="param-item">
+                <label>Arah awal</label>
+                <select id="power_direction">
+                  <option value="ind" selected>Induktif</option>
+                  <option value="cap">Kapasitif</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="slider-container">
+              <span class="slider-label"
+                ><i class="fas fa-chart-line"></i> Waktu (detik):</span
+              >
+              <input
+                type="range"
+                id="time_progress"
+                min="0"
+                max="2.0"
+                step="0.01"
+                value="0"
+              />
+              <span id="time_value" class="dynamic-value">0.00 s</span>
+            </div>
+
+            <div class="real-time-values">
+              <div class="value-box">V = <span id="rt_v">16.00</span> kV</div>
+              <div class="value-box">I = <span id="rt_i">8000</span> A</div>
+              <div class="value-box">R = <span id="rt_r">0.00</span> Ω</div>
+              <div class="value-box">X = <span id="rt_x">0.00</span> Ω</div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 10px;
+              "
+            >
+              <span
+                ><i class="fas fa-info-circle"></i> Status:
+                <span id="status_trip">Normal</span></span
+              >
+              <span
+                class="status-badge"
+                id="trip_indicator"
+                style="background: #2ca02c"
+                >Aman</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Grafik dengan Tombol Play di Atas -->
+        <div class="right-col">
+          <div class="chart-header">
+            <h3 style="color: #154c73; margin: 0">
+              <i class="fas fa-chart-scatter"></i> Trajektori Z Selama LOE
+            </h3>
+            <div class="chart-controls">
+              <button class="play-btn" id="playBtn">
+                <i class="fas fa-play"></i> Animasi LOE
+              </button>
+              <button class="reset-btn" id="resetBtn">
+                <i class="fas fa-undo"></i> Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="legend-inline">
+            <span
+              ><span class="legend-color" style="background: #1f77b4"></span>
+              Zona 1</span
+            >
+            <span
+              ><span class="legend-color" style="background: #ff7f0e"></span>
+              Zona 2</span
+            >
+            <span
+              ><span class="legend-color" style="background: #d62728"></span>
+              Z(t)</span
+            >
+            <span
+              ><span class="legend-color" style="background: #9467bd"></span>
+              Jejak LOE</span
+            >
+          </div>
+
+          <canvas id="mhoChart" width="800" height="550"></canvas>
+
+          <div class="footnote">
+            <i class="fas fa-lightbulb" style="margin-right: 12px"></i>
+            <strong>Bagaimana membaca grafik:</strong> Titik merah adalah
+            impedansi saat ini. Saat kehilangan eksitasi, impedansi bergerak ke
+            kuadran bawah (X negatif). Proteksi akan trip jika titik merah
+            memasuki Zona 2 lebih dari waktu tunda, atau segera jika masuk Zona
+            1.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // ==================== INISIALISASI ELEMEN ====================
+        const sInp = document.getElementById("s_mva");
+        const vInp = document.getElementById("v_kv");
+        const xdPu = document.getElementById("xd_pu");
+        const xd1Pu = document.getElementById("xd1_pu");
+        const ctInp = document.getElementById("ct_ratio");
+        const vtInp = document.getElementById("vt_ratio");
+        const t1Inp = document.getElementById("t1");
+        const t2Inp = document.getElementById("t2");
+        const z1diaPu = document.getElementById("zone1_dia_pu");
+        const hitungBtn = document.getElementById("hitungBtn");
+
+        const iOp = document.getElementById("i_operasi");
+        const vOp = document.getElementById("v_operasi");
+        const cosPhi = document.getElementById("cosphi");
+        const powerDir = document.getElementById("power_direction");
+
+        const timeSlider = document.getElementById("time_progress");
+        const timeValue = document.getElementById("time_value");
+        const playBtn = document.getElementById("playBtn");
+        const resetBtn = document.getElementById("resetBtn");
+
+        const rtV = document.getElementById("rt_v");
+        const rtI = document.getElementById("rt_i");
+        const rtR = document.getElementById("rt_r");
+        const rtX = document.getElementById("rt_x");
+
+        const statusTrip = document.getElementById("status_trip");
+        const tripIndicator = document.getElementById("trip_indicator");
+
+        // Elemen hasil
+        const resZbase = document.getElementById("res_zbase");
+        const resXdOhm = document.getElementById("res_xd_ohm");
+        const resXd1Ohm = document.getElementById("res_xd1_ohm");
+        const resOffsetPrim = document.getElementById("res_offset_prim");
+        const resZ1diaPrim = document.getElementById("res_z1_dia_prim");
+        const resZ2diaPrim = document.getElementById("res_z2_dia_prim");
+        const resKFactor = document.getElementById("res_k_factor");
+        const resOffsetRelay = document.getElementById("res_offset_relay");
+        const resZ1diaRelay = document.getElementById("res_z1_dia_relay");
+        const resZ2diaRelay = document.getElementById("res_z2_dia_relay");
+        const resTimes = document.getElementById("res_times");
+
+        // Elemen detail perhitungan
+        const calcZbase = document.getElementById("calc_zbase");
+        const calcXd = document.getElementById("calc_xd");
+        const calcXd1 = document.getElementById("calc_xd1");
+        const calcOffsetPrim = document.getElementById("calc_offset_prim");
+        const calcZ1Prim = document.getElementById("calc_z1_prim");
+        const calcZ2Prim = document.getElementById("calc_z2_prim");
+        const calcK = document.getElementById("calc_k");
+        const calcOffsetRelay = document.getElementById("calc_offset_relay");
+        const calcZ1Relay = document.getElementById("calc_z1_relay");
+        const calcZ2Relay = document.getElementById("calc_z2_relay");
+
+        // ==================== VARIABEL GLOBAL ====================
+        let chart = null;
+        const ctx = document.getElementById("mhoChart").getContext("2d");
+
+        let currentSettings = {
+          zBase: 1.219,
+          xd_prim: 2.1942,
+          xd1_prim: 0.3048,
+          offset_prim: -0.1524,
+          dia1_prim: 1.219,
+          dia2_prim: 2.1942,
+          offset_relay: -2.54,
+          dia1_relay: 20.3167,
+          dia2_relay: 36.57,
+          ct: 2000,
+          vt: 120,
+          t1: 0.3,
+          t2: 1.0,
+        };
+
+        let trajectoryPoints = [];
+        let axisLimits = { minX: -30, maxX: 30, minY: -40, maxY: 20 };
+        let animInterval = null;
+
+        // ==================== FUNGSI PERHITUNGAN ====================
+        function hitungSetting() {
+          let s = parseFloat(sInp.value);
+          let v = parseFloat(vInp.value);
+          let xd_pu = parseFloat(xdPu.value);
+          let xd1_pu = parseFloat(xd1Pu.value);
+          let ct = parseFloat(ctInp.value);
+          let vt = parseFloat(vtInp.value);
+          let t1 = parseFloat(t1Inp.value);
+          let t2 = parseFloat(t2Inp.value);
+          let z1pu = parseFloat(z1diaPu.value);
+
+          if (isNaN(s) || s <= 0) s = 210;
+          if (isNaN(v) || v <= 0) v = 16;
+          if (isNaN(xd_pu) || xd_pu <= 0) xd_pu = 1.8;
+          if (isNaN(xd1_pu) || xd1_pu <= 0) xd1_pu = 0.25;
+          if (isNaN(ct) || ct <= 0) ct = 2000;
+          if (isNaN(vt) || vt <= 0) vt = 120;
+          if (isNaN(t1)) t1 = 0.3;
+          if (isNaN(t2)) t2 = 1.0;
+          if (isNaN(z1pu) || z1pu <= 0) z1pu = 1.0;
+
+          // Perhitungan detail
+          const zBase = (v * v) / s;
+          const xd_ohm_prim = xd_pu * zBase;
+          const xd1_ohm_prim = xd1_pu * zBase;
+          const offset_prim = -xd1_ohm_prim / 2;
+          const dia2_prim = xd_ohm_prim;
+          let dia1_prim = z1pu * zBase;
+          if (dia1_prim > xd_ohm_prim) dia1_prim = xd_ohm_prim;
+
+          const k = ct / vt;
+          const offset_relay = offset_prim * k;
+          const dia1_relay = dia1_prim * k;
+          const dia2_relay = dia2_prim * k;
+
+          // Update hasil numerik
+          resZbase.innerText = zBase.toFixed(4) + " Ω";
+          resXdOhm.innerText = xd_ohm_prim.toFixed(4) + " Ω";
+          resXd1Ohm.innerText = xd1_ohm_prim.toFixed(4) + " Ω";
+          resOffsetPrim.innerText = offset_prim.toFixed(4) + " Ω";
+          resZ1diaPrim.innerText = dia1_prim.toFixed(4) + " Ω";
+          resZ2diaPrim.innerText = dia2_prim.toFixed(4) + " Ω";
+          resKFactor.innerText = k.toFixed(4);
+          resOffsetRelay.innerText = offset_relay.toFixed(4) + " Ω";
+          resZ1diaRelay.innerText = dia1_relay.toFixed(4) + " Ω";
+          resZ2diaRelay.innerText = dia2_relay.toFixed(4) + " Ω";
+          resTimes.innerText = t1.toFixed(2) + " s / " + t2.toFixed(2) + " s";
+
+          // Update detail perhitungan dengan nilai aktual
+          calcZbase.innerText = `Zbase = V² / S = ${v.toFixed(1)}² / ${s.toFixed(1)} = ${zBase.toFixed(4)} Ω`;
+          calcXd.innerText = `Xd (primer) = Xd(pu) × Zbase = ${xd_pu.toFixed(2)} × ${zBase.toFixed(4)} = ${xd_ohm_prim.toFixed(4)} Ω`;
+          calcXd1.innerText = `X'd (primer) = X'd(pu) × Zbase = ${xd1_pu.toFixed(2)} × ${zBase.toFixed(4)} = ${xd1_ohm_prim.toFixed(4)} Ω`;
+          calcOffsetPrim.innerText = `Offset = -X'd/2 = -${xd1_ohm_prim.toFixed(4)} / 2 = ${offset_prim.toFixed(4)} Ω`;
+          calcZ1Prim.innerText = `Zona 1 (primer) = diameter(pu) × Zbase = ${z1pu.toFixed(2)} × ${zBase.toFixed(4)} = ${dia1_prim.toFixed(4)} Ω`;
+          calcZ2Prim.innerText = `Zona 2 (primer) = Xd (primer) = ${xd_ohm_prim.toFixed(4)} Ω`;
+          calcK.innerText = `k = Rasio CT / Rasio VT = ${ct} / ${vt} = ${k.toFixed(4)}`;
+          calcOffsetRelay.innerText = `Offset (relay) = Offset(primer) × k = ${offset_prim.toFixed(4)} × ${k.toFixed(4)} = ${offset_relay.toFixed(4)} Ω`;
+          calcZ1Relay.innerText = `Zona 1 (relay) = Zona 1(primer) × k = ${dia1_prim.toFixed(4)} × ${k.toFixed(4)} = ${dia1_relay.toFixed(4)} Ω`;
+          calcZ2Relay.innerText = `Zona 2 (relay) = Zona 2(primer) × k = ${dia2_prim.toFixed(4)} × ${k.toFixed(4)} = ${dia2_relay.toFixed(4)} Ω`;
+
+          currentSettings = {
+            zBase,
+            xd_prim: xd_ohm_prim,
+            xd1_prim: xd1_ohm_prim,
+            offset_prim,
+            dia1_prim,
+            dia2_prim,
+            offset_relay,
+            dia1_relay,
+            dia2_relay,
+            ct,
+            vt,
+            t1,
+            t2,
+          };
+
+          return currentSettings;
+        }
+
+        function hitungVIdanZ(t) {
+          let V0 = parseFloat(vOp.value) || 16;
+          let I0 = parseFloat(iOp.value) || 8000;
+          let cosf = parseFloat(cosPhi.value) || 0.85;
+          let dir = powerDir.value;
+
+          const tau = 0.5;
+          let expFactor = Math.exp(-t / tau);
+
+          let Vt = V0 * expFactor;
+          let It = I0 * (1 + 2 * (1 - expFactor));
+
+          let Vph = (Vt * 1000) / Math.sqrt(3);
+          let Zmag = Vph / It;
+
+          let phi0 = dir === "ind" ? Math.acos(cosf) : -Math.acos(cosf);
+          let phiEnd = (-75 * Math.PI) / 180;
+          let phi_t =
+            phi0 * Math.exp(-t / 0.3) + phiEnd * (1 - Math.exp(-t / 0.3));
+
+          let R = Zmag * Math.cos(phi_t);
+          let X = Zmag * Math.sin(phi_t);
+
+          return { V: Vt, I: It, R, X };
+        }
+
+        function generateTrajectory() {
+          let points = [];
+          let steps = 200;
+          for (let i = 0; i <= steps; i++) {
+            let t = (i / steps) * 2.0;
+            let { R, X, V, I } = hitungVIdanZ(t);
+            let k = currentSettings.ct / currentSettings.vt;
+            points.push({
+              t: t,
+              R: R * k,
+              X: X * k,
+              V: V,
+              I: I,
+            });
+          }
+          return points;
+        }
+
+        function hitungAxisLimits() {
+          let settings = currentSettings;
+          let centerX = settings.offset_relay;
+          let r2 = settings.dia2_relay / 2;
+
+          let allX = [centerX - r2, centerX + r2];
+          let allY = [-r2, r2];
+
+          let minX = Math.min(...allX) - 8;
+          let maxX = Math.max(...allX) + 8;
+          let minY = Math.min(...allY) - 8;
+          let maxY = Math.max(...allY) + 8;
+
+          let rangeX = maxX - minX;
+          let rangeY = maxY - minY;
+          if (rangeY < rangeX * 0.6) {
+            let centerY = (minY + maxY) / 2;
+            minY = centerY - rangeX * 0.3;
+            maxY = centerY + rangeX * 0.3;
+          }
+
+          return { minX, maxX, minY, maxY };
+        }
+
+        // ==================== INISIALISASI CHART ====================
+        function initChart() {
+          chart = new Chart(ctx, {
+            type: "scatter",
+            data: {
+              datasets: [
+                {
+                  label: "Zona 1",
+                  data: [],
+                  borderColor: "#1f77b4",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  showLine: true,
+                  fill: false,
+                },
+                {
+                  label: "Zona 2",
+                  data: [],
+                  borderColor: "#ff7f0e",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  showLine: true,
+                  fill: false,
+                },
+                {
+                  label: "Z(t)",
+                  data: [{ x: 0, y: 0 }],
+                  borderColor: "#d62728",
+                  backgroundColor: "#d62728",
+                  pointRadius: 8,
+                  pointStyle: "circle",
+                },
+                {
+                  label: "Jejak LOE",
+                  data: [],
+                  borderColor: "#9467bd",
+                  backgroundColor: "transparent",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  showLine: true,
+                  fill: false,
+                },
+                {
+                  label: "Sumbu R",
+                  data: [],
+                  borderColor: "#aaa",
+                  borderWidth: 1,
+                  pointRadius: 0,
+                  showLine: true,
+                  borderDash: [6, 6],
+                },
+                {
+                  label: "Sumbu X",
+                  data: [],
+                  borderColor: "#aaa",
+                  borderWidth: 1,
+                  pointRadius: 0,
+                  showLine: true,
+                  borderDash: [6, 6],
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: true,
+              aspectRatio: 1.2,
+              animation: false,
+              plugins: {
+                tooltip: { enabled: false },
+                legend: { display: false },
+              },
+              scales: {
+                x: {
+                  title: { display: true, text: "R (Ohm sekunder)" },
+                  min: axisLimits.minX,
+                  max: axisLimits.maxX,
+                  grid: { color: "#d0d0d0" },
+                },
+                y: {
+                  title: { display: true, text: "X (Ohm sekunder)" },
+                  min: axisLimits.minY,
+                  max: axisLimits.maxY,
+                  grid: { color: "#d0d0d0" },
+                },
+              },
+            },
+          });
+        }
+
+        function updateChartData() {
+          let settings = currentSettings;
+
+          function genCircle(r, cx, cy, pts = 100) {
+            let arr = [];
+            for (let i = 0; i <= pts; i++) {
+              let a = (i / pts) * 2 * Math.PI;
+              arr.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
+            }
+            return arr;
+          }
+
+          let centerX = settings.offset_relay;
+          let r1 = settings.dia1_relay / 2;
+          let r2 = settings.dia2_relay / 2;
+
+          let circ1 = genCircle(r1, centerX, 0);
+          let circ2 = genCircle(r2, centerX, 0);
+
+          let sumbuR = [
+            { x: axisLimits.minX, y: 0 },
+            { x: axisLimits.maxX, y: 0 },
+          ];
+          let sumbuX = [
+            { x: 0, y: axisLimits.minY },
+            { x: 0, y: axisLimits.maxY },
+          ];
+
+          chart.data.datasets[0].data = circ1;
+          chart.data.datasets[1].data = circ2;
+          chart.data.datasets[4].data = sumbuR;
+          chart.data.datasets[5].data = sumbuX;
+
+          chart.options.scales.x.min = axisLimits.minX;
+          chart.options.scales.x.max = axisLimits.maxX;
+          chart.options.scales.y.min = axisLimits.minY;
+          chart.options.scales.y.max = axisLimits.maxY;
+
+          chart.update();
+        }
+
+        function updateZAtTime(t) {
+          let idx = 0;
+          for (let i = 0; i < trajectoryPoints.length; i++) {
+            if (trajectoryPoints[i].t <= t) idx = i;
+          }
+          let point = trajectoryPoints[idx] || trajectoryPoints[0];
+
+          chart.data.datasets[3].data = trajectoryPoints.map((p) => ({
+            x: p.R,
+            y: p.X,
+          }));
+          chart.data.datasets[2].data = [{ x: point.R, y: point.X }];
+
+          rtV.innerText = point.V.toFixed(2);
+          rtI.innerText = point.I.toFixed(0);
+          rtR.innerText = point.R.toFixed(4);
+          rtX.innerText = point.X.toFixed(4);
+
+          let inZone1 = false;
+          let inZone2 = false;
+
+          let dx1 = point.R - currentSettings.offset_relay;
+          let dy1 = point.X;
+          let dist1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+          if (dist1 <= currentSettings.dia1_relay / 2) inZone1 = true;
+
+          let dx2 = point.R - currentSettings.offset_relay;
+          let dy2 = point.X;
+          let dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+          if (dist2 <= currentSettings.dia2_relay / 2) inZone2 = true;
+
+          if (inZone1) {
+            statusTrip.innerText = "ZONA 1 - TRIP CEPAT!";
+            tripIndicator.innerText = "TRIP";
+            tripIndicator.style.background = "#d62728";
+          } else if (inZone2 && t >= currentSettings.t2) {
+            statusTrip.innerText = `ZONA 2 - TRIP (t>=${currentSettings.t2}s)`;
+            tripIndicator.innerText = "TRIP";
+            tripIndicator.style.background = "#d62728";
+          } else if (inZone2) {
+            statusTrip.innerText = `ZONA 2 - perlu ${(currentSettings.t2 - t).toFixed(2)}s lagi`;
+            tripIndicator.innerText = "WARNING";
+            tripIndicator.style.background = "#ff7f0e";
+          } else {
+            statusTrip.innerText = "Normal";
+            tripIndicator.innerText = "Aman";
+            tripIndicator.style.background = "#2ca02c";
+          }
+
+          chart.update("none");
+        }
+
+        // ==================== EVENT HANDLERS ====================
+        hitungBtn.addEventListener("click", () => {
+          hitungSetting();
+          trajectoryPoints = generateTrajectory();
+          axisLimits = hitungAxisLimits();
+          updateChartData();
+          timeSlider.value = 0;
+          timeValue.innerText = "0.00 s";
+          updateZAtTime(0);
+        });
+
+        timeSlider.addEventListener("input", (e) => {
+          let t = parseFloat(e.target.value);
+          timeValue.innerText = t.toFixed(2) + " s";
+          updateZAtTime(t);
+        });
+
+        function startAnimation() {
+          if (animInterval) clearInterval(animInterval);
+          timeSlider.value = 0;
+          timeValue.innerText = "0.00 s";
+          updateZAtTime(0);
+
+          animInterval = setInterval(() => {
+            let t = parseFloat(timeSlider.value);
+            t += 0.02;
+            if (t >= 2.0) {
+              t = 2.0;
+              clearInterval(animInterval);
+              animInterval = null;
+            }
+            timeSlider.value = t;
+            timeValue.innerText = t.toFixed(2) + " s";
+            updateZAtTime(t);
+          }, 30);
+        }
+
+        function resetAnimation() {
+          if (animInterval) {
+            clearInterval(animInterval);
+            animInterval = null;
+          }
+          timeSlider.value = 0;
+          timeValue.innerText = "0.00 s";
+          updateZAtTime(0);
+        }
+
+        playBtn.addEventListener("click", startAnimation);
+        resetBtn.addEventListener("click", resetAnimation);
+
+        [iOp, vOp, cosPhi, powerDir].forEach((el) => {
+          el.addEventListener("input", () => {
+            trajectoryPoints = generateTrajectory();
+            resetAnimation();
+          });
+        });
+
+        window.addEventListener("load", () => {
+          hitungSetting();
+          trajectoryPoints = generateTrajectory();
+          axisLimits = hitungAxisLimits();
+          initChart();
+          updateChartData();
+          updateZAtTime(0);
+        });
+      })();
+    </script>
+  </body>
+</html>
